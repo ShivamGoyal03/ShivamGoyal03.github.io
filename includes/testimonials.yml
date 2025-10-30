@@ -1,0 +1,15 @@
+testimonials:
+  - content: "Shivam has a passion for building AI solutions using the latest tools and technologies, and has made valuable contributions to the Azure AI Foundry global community, including authoring articles and answering questions from other developers. Thank you, Shivam!"
+    name: Guy Gregory
+    description: Partner Solution Architect | Microsoft
+    avatar: https://media.licdn.com/dms/image/v2/D4E03AQE-_PTM9gFSnA/profile-displayphoto-crop_800_800/B4EZjSg.gxGUAI-/0/1755878518173?e=1762387200&v=beta&t=w5rcAB0vvHIXxoLb_cIK1k3_QX9C-MEgMltTl38LHP0
+    linkedin: https://www.linkedin.com/in/guygregory/
+  - content: "Thrilled to recognize Shivam Goyal for his outstanding contributions to AI innovation and developer empowerment.
+              <br>Technical Leadership: Delivered high-quality Agentic RAG samples for Microsoft AI Agents, helping developers build intelligent workflows.
+              <br>Community Impact: Microsoft MVP in AI, known for sharing expertise through blogs, sessions, and demos.
+              <br>Open Source Excellence: Strengthened the developer ecosystem with impactful GitHub contributions and Azure AI guidance.
+              <br>Shivam truly combines deep technical skill with a strong community spirit."
+    name: Lee Stott
+    description: Principal Cloud Advocate Manager | Microsoft
+    avatar: https://github.com/leestott.png
+    linkedin: https://www.linkedin.com/in/leestott/
