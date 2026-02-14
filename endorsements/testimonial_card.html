@@ -1,0 +1,49 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+</head>
+<div class="testimonial-section">
+  <h1>Endorsements</h1>
+  <div class="testimonial-grid">
+    {%- for testimonial in testimonials -%}
+    <div class="custom-testimonial-card">
+      <blockquote>
+        {{ testimonial.content }}
+      </blockquote>
+      <div class="custom-testimonial-author">
+        {% if testimonial.avatar %}
+        <img
+          src="{{ testimonial.avatar }}"
+          class="custom-testimonial-avatar"
+          alt="{{ testimonial.name }}"
+          style="height: 50px; width: auto; border-radius: 50%; object-fit: cover;"
+        />
+        {% endif %}
+        <div class="custom-testimonial-data">
+          <div class="custom-testimonial-name">{{ testimonial.name }}</div>
+          <div class="custom-testimonial-description">{{ testimonial.description }}</div>
+          <div class="custom-testimonial-social">
+            {% if testimonial.linkedin %}
+              <a href="{{ testimonial.linkedin }}" target="_blank" title="LinkedIn">
+                 <i class="fab fa-linkedin"></i>
+              </a>
+            {% endif %}
+            {% if testimonial.linkedin and testimonial.mail %}
+              <span> | </span>
+            {% endif %}
+            {% if testimonial.mail %}
+              <a href="{{ testimonial.mail }}" title="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {%- endfor -%}
+  </div>
+</div>

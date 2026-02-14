@@ -1,0 +1,25 @@
+testimonials:
+  - content: "Shivam has a passion for building AI solutions using the latest tools and technologies, and has made valuable contributions to the Azure AI Foundry global community, including authoring articles and answering questions from other developers. Thank you, Shivam!"
+    name: Guy Gregory
+    description: Partner Solution Architect | Microsoft
+    avatar: https://greymatter.com/wp-content/uploads/2025/08/Guy-Gregory.png
+    linkedin: https://www.linkedin.com/in/guygregory/
+  - content: "Shivam brings in a lot of energy in everything he does which has a positive impact on the people he works with. He's also curious and always wants to know more and why something works. He added valuable contributions to our curriculums skilling thousands of learners. I'd recommend him for work in the AI space."
+    name: Christoffer Noring
+    description: Senior Cloud Advocate process Lead | Microsoft
+    avatar: https://github.com/softchris.png
+    linkedin: https://www.linkedin.com/in/christoffer-noring-3257061/
+  - content: "Thrilled to recognize Shivam Goyal for his outstanding contributions to AI innovation and developer empowerment.
+              <br>Technical Leadership: Delivered high-quality Agentic RAG samples for Microsoft AI Agents, helping developers build intelligent workflows.
+              <br>Community Impact: Microsoft MVP in AI, known for sharing expertise through blogs, sessions, and demos.
+              <br>Open Source Excellence: Strengthened the developer ecosystem with impactful GitHub contributions and Azure AI guidance.
+              <br>Shivam truly combines deep technical skill with a strong community spirit."
+    name: Lee Stott
+    description: Principal Cloud Advocate Manager | Microsoft
+    avatar: https://github.com/leestott.png
+    linkedin: https://www.linkedin.com/in/leestott/
+  - content: "Shivam is a valued member of the Microsoft AI community becasue of his incredible contributions to the AI Agents for Beginners and Generative AI for Beginners courses. He made impactful contributions to the code and content of the course to produce a better learner experience. I really apperciate working with Shivam because of his energy and enhuasim to take on tasks and deliver on them. He also takes feedback well and includes that to improve his work overall!"
+    name: Korey Stegared-Pace
+    description: Senior Cloud Advocate | Microsoft
+    avatar: https://developer.microsoft.com/en-us/advocates/media/profiles/korey-stegared-pace.png
+    linkedin: https://www.linkedin.com/in/koreyspace/
