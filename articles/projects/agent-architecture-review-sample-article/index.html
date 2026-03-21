@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="How and why I built the Architecture Review Agent, what changed from StructureIQ to the official Azure Sample, and how it delivers practical architecture reviews with visual outputs."><meta name="author" content="Shivam Goyal"><meta property="og:title" content="Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample | Shivam Goyal"><meta property="og:description" content="How and why I built the Architecture Review Agent, what changed from StructureIQ to the official Azure Sample, and how it delivers practical architecture reviews with visual outputs."><meta property="og:type" content="website"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><title>Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample | Shivam Goyal</title><!-- Google Site Verification --><meta name="google-site-verification" content="CtC6-JsgeM6SWgAI-49ulbV17PK5U6bzr4JXZ3A8i3s"><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MTXJNXC2');</script><!-- End Google Tag Manager --><!-- Google Analytics 4 (GA4) - property: G-EGMZS4BKN8 --><script async src="https://www.googletagmanager.com/gtag/js?id=G-EGMZS4BKN8"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EGMZS4BKN8');
+    </script><!-- End Google Analytics 4 --><!-- Prevent flash of wrong theme --><script>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light' || (!stored && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script><script type="module" src="/assets/BaseLayout.astro_astro_type_script_index_0_lang.q6GZMSBH.js"></script><link rel="stylesheet" href="/assets/index.DzEYfdh4.css"></head> <body class="min-h-screen flex flex-col"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTXJNXC2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-xl"> <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"> <!-- Logo --> <a href="/" class="flex items-center gap-3 group"> <div class="sg-logo" aria-label="SG"> <svg width="36" height="36" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"> <defs> <linearGradient id="logo-g-h" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#818cf8"></stop> <stop offset="50%" stop-color="#a78bfa"></stop> <stop offset="100%" stop-color="#06b6d4"></stop> </linearGradient> </defs> <rect class="sg-logo-bg" width="32" height="32" rx="8"></rect> <rect x="1.5" y="1.5" width="29" height="29" rx="6.5" fill="none" stroke="url(#logo-g-h)" stroke-width="1.2" opacity="0.6"></rect> <text x="4" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-h)" opacity="0.4">&lt;</text> <text x="22" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-h)" opacity="0.4">/&gt;</text> <text x="16" y="22" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="14" font-weight="800" fill="url(#logo-g-h)" text-anchor="middle">SG</text> <circle cx="6" cy="5" r="1.2" fill="#06b6d4" opacity="0.7"></circle> <circle cx="26" cy="5" r="1" fill="#818cf8" opacity="0.6"></circle> <circle cx="26" cy="27" r="1.2" fill="#a78bfa" opacity="0.5"></circle> <circle cx="6" cy="27" r="1" fill="#06b6d4" opacity="0.4"></circle> </svg> </div> <span class="text-lg font-bold text-[var(--text)] group-hover:text-[var(--color-primary-light)] transition-colors">
+Shivam Goyal
+</span> </a> <!-- Desktop Nav --> <div class="hidden md:flex items-center gap-1"> <a href="/" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Home </a><a href="/about" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> About </a><a href="/projects" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Projects </a><a href="/articles" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-[var(--color-primary)]/15 text-[var(--color-primary-light)]"> Articles </a><a href="/mvp" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> MVP </a><a href="/endorsements" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Endorsements </a> </div> <!-- Theme Toggle + Search + Mobile Toggle --> <div class="flex items-center gap-2"> <!-- Theme Toggle --> <button id="theme-toggle" class="theme-btn flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)] transition-all" aria-label="Toggle theme" title="Toggle theme"> <!-- Sun icon (shown in dark mode) --> <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path> </svg> <!-- Moon icon (shown in light mode) --> <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path> </svg> </button> <button id="search-toggle" class="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)] transition-all" aria-label="Toggle search"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path> </svg> </button> <button id="mobile-menu-toggle" class="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)] transition-all md:hidden" aria-label="Toggle menu"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> </nav> <!-- Mobile Nav --> <div id="mobile-menu" class="hidden border-t border-[var(--border)] bg-[var(--surface)] px-6 py-4 md:hidden"> <div class="flex flex-col gap-1"> <a href="/" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Home </a><a href="/about" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> About </a><a href="/projects" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Projects </a><a href="/articles" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all bg-[var(--color-primary)]/15 text-[var(--color-primary-light)]"> Articles </a><a href="/mvp" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> MVP </a><a href="/endorsements" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Endorsements </a> </div> </div> <!-- Search Overlay --> <div id="search-overlay" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"> <div class="mx-auto mt-24 max-w-2xl px-4"> <div class="glass-card p-4"> <div class="flex items-center gap-3 mb-4"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path> </svg> <input id="search-input" type="text" placeholder="Search articles, projects, topics..." class="flex-1 bg-transparent text-[var(--text)] placeholder-[var(--text-muted)] outline-none text-lg"> <button id="search-close" class="text-[var(--text-muted)] hover:text-[var(--text)] text-sm font-medium"> <span class="inline md:hidden">Close</span> <span class="hidden md:inline">ESC</span> </button> </div> <div id="search-results" class="max-h-96 overflow-y-auto"> <p class="text-center text-[var(--text-muted)] text-sm py-6">Type to search...</p> </div> </div> </div> </div> </header> <!-- Search data injected at build time; read by the Fuse.js script below --> <script type="application/json" id="search-data">[{"title":"Step-by-Step Tutorial: Building an AI Agent Using Microsoft Foundry","description":"A comprehensive, hands-on tutorial for building AI agents using Microsoft Foundry and connected services. • ~16.5K views","url":"/articles/guides/azure-ai-agent-tutorial","category":"Guides"},{"title":"Getting Started With Azure AI Studio","description":"A comprehensive guide introducing developers to Azure AI Studio, Microsoft's integrated AI development environment. • ~16.1K views","url":"/articles/guides/azure-ai-studio-guide","category":"Guides"},{"title":"Exploring AI Development and Management: A Journey through Contoso Chat and LLM Ops","description":"A comprehensive exploration of the complete AI application lifecycle through Contoso Chat and LLM Ops practices. • ~14.7K views","url":"/articles/guides/ai-dev-management-llmops","category":"Guides"},{"title":"Exploring Azure AI Services: Introduction and its Use Cases","description":"A detailed exploration of Azure AI Services, their capabilities, and practical use cases. • ~8.4K views","url":"/articles/guides/azure-ai-services-intro","category":"Guides"},{"title":"Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample","description":"How and why I built the Architecture Review Agent, what changed from StructureIQ to the official Azure Sample, and how it delivers practical architecture reviews with visual outputs. • ~7.6K views","url":"/articles/projects/agent-architecture-review-sample-article","category":"Projects"},{"title":"AI Agents: The Multi-Agent Design Pattern - Part 8","description":"Coordinating multiple agents for collaborative problem-solving and task orchestration. • ~5.5K views","url":"/articles/series/part-8-multi-agent","category":"Series"},{"title":"Unlocking the Power of AI Agents: An Introductory Guide - Part 1","description":"A comprehensive introduction to AI agents, establishing conceptual foundations and practical insights. • ~4.8K views","url":"/articles/series/part-1-intro","category":"Series"},{"title":"AI Agents: Exploring Agentic Frameworks - Part 2","description":"Comparing frameworks and tools for building AI agents, from AutoGen to Semantic Kernel. • ~4.2K views","url":"/articles/series/part-2-frameworks","category":"Series"},{"title":"AI Agents: Mastering Agentic RAG - Part 5","description":"Combining retrieval-augmented generation with agent architectures for data-aware AI systems. • ~3.7K views","url":"/articles/series/part-5-rag","category":"Series"},{"title":"Unlocking the Power of Your Data: Build Smarter Apps with AI","description":"A comprehensive guide to building AI applications that leverage organizational data through RAG patterns. • ~3.3K views","url":"/articles/guides/rag-with-llamaindex","category":"Guides"},{"title":"AI Agents: Key Principles and Guidelines - Part 3","description":"Core design principles for building effective, reliable AI agents. • ~3.2K views","url":"/articles/series/part-3-principles","category":"Series"},{"title":"AI Agents: Planning and Orchestration with the Planning Design Pattern - Part 7","description":"Using planning patterns for complex task execution and agent orchestration. • ~2.5K views","url":"/articles/series/part-7-planning","category":"Series"},{"title":"CodeNull - No-Code Website Builder Platform","description":"AI-powered no-code builder that turns natural-language prompts into full-stack deployable web apps.","url":"/projects/flagship-projects/codenull","category":"Project"},{"title":"LexiVerse - AI Marketing Writing Assistant","description":"AI writing assistant that generates on-brand marketing copy - from blog posts to ads - in seconds.","url":"/projects/flagship-projects/lexiverse","category":"Project"},{"title":"MVP Activity AutoPilot","description":"Agentic utility that automates repetitive MVP portal contribution entries using browser automation and AI.","url":"/projects/flagship-projects/mvp-activity-autopilot","category":"Project"},{"title":"Questro - Document Q&A Chatbot","description":"Chat with PDF, DOCX, and TXT files using retrieval-augmented generation powered by LlamaIndex and OpenAI.","url":"/projects/flagship-projects/questro","category":"Project"},{"title":"Synthetify - Synthetic Time-Series Generator","description":"Interactive toolkit for generating and imputing synthetic time-series data using statistical and ML models.","url":"/projects/flagship-projects/synthetify","category":"Project"},{"title":"AI Gesture Virtual Keyboard","description":"Touchless onscreen keyboard controlled by hand gestures detected via real-time computer vision.","url":"/projects/innovation/ai-keyboard","category":"Project"},{"title":"FormPilot - Web Form Automation","description":"AI-orchestrated browser automation framework that fills and submits web forms with minimal manual input.","url":"/projects/innovation/formpilot","category":"Project"},{"title":"AICalcX - AI Project Cost Calculator","description":"Agentic cost intelligence system that moves AI infrastructure cost estimation into the architecture design phase - before resources are provisioned. Core token and compute cost modules are functional; full multi-cloud support is paused pending stable unified pricing APIs. See BLOCKERS.md in the repo for the full ecosystem analysis.","url":"/projects/innovation/aicalcx","category":"Project"},{"title":"MediMind - Medical Symptom Analyzer","description":"AI-powered symptom checker that uses RNN and LLM models to explore clinical NLP in a safe educational context.","url":"/projects/innovation/medimind","category":"Project"},{"title":"PrivyDoc - Local Document Intelligence","description":"Fully local AI document assistant - zero data sent to the cloud, runs on-device via Foundry Local for complete privacy.","url":"/projects/innovation/privydoc","category":"Project"},{"title":"RoamMind - Travel AI Assistant","description":"Conversational travel planner that orchestrates flights, hotels, restaurants, and activities from a single AI interface.","url":"/projects/innovation/roammind","category":"Project"},{"title":"Agent Architecture Review Sample (Azure Samples)","description":"Official Azure Sample that reviews architecture inputs, detects risks, and generates interactive Excalidraw + PNG diagrams with CLI, API, and hosted agent deployment paths.","url":"/projects/opensource/agent-architecture-review-sample","category":"Open Source"},{"title":"AI Agents for Beginners Contributions","description":"16 merged PRs into Microsoft’s AI Agents for Beginners repo - multi-agent orchestration, vision workflows, and framework guides used by thousands.","url":"/projects/opensource/ai-agents-beginners","category":"Open Source"},{"title":"Microsoft Foundry Webinar Series","description":"Webinar content and framework comparisons helping developers choose and build with Microsoft Foundry and agentic frameworks.","url":"/projects/opensource/azure-foundry-webinar","category":"Open Source"},{"title":"Agentic RAG Implementation","description":"Practical Agentic RAG examples using Semantic Kernel, AutoGen, and Azure AI Search - merged into Microsoft’s official AI Agents repo.","url":"/projects/opensource/agentic-rag","category":"Open Source"},{"title":"AI-900 Study Plan Generator","description":"MCP-powered study planner that generates personalised AI-900 learning paths, contributed as an official case study to microsoft/mcp-for-beginners.","url":"/projects/opensource/ai900-study-plan","category":"Open Source"},{"title":"About","description":"Education, experience, certifications","url":"/about","category":"Page"},{"title":"MVP Portfolio","description":"Microsoft MVP contributions and recognition","url":"/mvp","category":"Page"},{"title":"Endorsements","description":"Testimonials from Microsoft leaders","url":"/endorsements","category":"Page"}]</script> <script>
+  // ─── Theme Toggle ───
+  // NOTE: This script block uses define:vars and is rendered inline by Astro,
+  // which means TypeScript type annotations are NOT stripped. Keep this plain JS.
+  function getThemePreference() {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    const root = document.documentElement;
+    root.classList.toggle('light', theme === 'light');
+    // Update icons
+    const sun = document.getElementById('icon-sun');
+    const moon = document.getElementById('icon-moon');
+    if (sun && moon) {
+      sun.classList.toggle('hidden', theme === 'light');
+      moon.classList.toggle('hidden', theme === 'dark');
+    }
+  }
+
+  // Apply immediately
+  applyTheme(getThemePreference());
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
+  // Listen for OS preference changes
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
+  // ─── Mobile menu toggle ───
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+
+  // Search toggle
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchInput = document.getElementById('search-input');
+
+  document.getElementById('search-toggle')?.addEventListener('click', () => {
+    searchOverlay?.classList.remove('hidden');
+    searchInput?.focus();
+  });
+
+  document.getElementById('search-close')?.addEventListener('click', () => {
+    searchOverlay?.classList.add('hidden');
+  });
+
+  searchOverlay?.addEventListener('click', (e) => {
+    if (e.target === searchOverlay) {
+      searchOverlay.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchOverlay?.classList.add('hidden');
+    }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      searchOverlay?.classList.remove('hidden');
+      searchInput?.focus();
+    }
+  });
+
+</script> <script type="module" src="/assets/Header.astro_astro_type_script_index_0_lang.hv1LyppO.js"></script> <main class="flex-1">  <article class="mx-auto max-w-4xl px-6 py-12"> <!-- Breadcrumb --> <nav class="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-8"> <a href="/" class="hover:text-[var(--color-primary-light)] transition-colors">Home</a> <span>/</span> <a href="/articles" class="hover:text-[var(--color-primary-light)] transition-colors">Articles</a> <span>/</span> <span class="text-[var(--text)]">Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample</span> </nav> <!-- Header --> <header class="mb-10"> <div class="flex flex-wrap items-center gap-3 mb-4"> <span class="badge">Project Articles</span> <span class="inline-flex items-center gap-1 text-xs text-[var(--color-accent-light)]"> <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"></path> <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path> </svg> 7,555 views
+</span> <span class="text-xs text-[var(--text-muted)]">February 21, 2026</span> </div> <h1 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample</h1> <p class="text-lg text-[var(--text-muted)]">How and why I built the Architecture Review Agent, what changed from StructureIQ to the official Azure Sample, and how it delivers practical architecture reviews with visual outputs.</p> <a href="https://techcommunity.microsoft.com/blog/educatordeveloperblog/stop-drawing-architecture-diagrams-manually-meet-the-open-source-ai-architecture/4496271" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-dark)] transition-colors">
+Read on Microsoft Tech Community
+<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"></path></svg> </a> </header> <!-- Content from .md file --> <div class="prose article-content"> <h1 id="stop-drawing-architecture-diagrams-manually-meet-the-open-source-ai-architecture-review-sample">Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample</h1>
+<p>Microsoft Tech Community | February 21, 2026</p>
+<hr>
+<h2 id="motive--why-i-wrote-this">Motive / Why I Wrote This</h2>
+<p>Architecture review is supposed to improve the quality of systems. Too often, however, teams spend most of their time preparing for the review instead of actually having the review. They gather scattered context, redraw diagrams, reconstruct service dependencies from memory, and manually translate informal notes into something presentable enough for discussion.</p>
+<p>I wrote this article because I wanted to document a different approach-one that respects how engineers actually work. Instead of requiring a perfect architecture specification up front, the Architecture Review Agent accepts the kinds of inputs teams already have, transforms them into a structured first-pass review, and returns artifacts that are useful immediately in meetings, docs, follow-up tasks, and decision-making.</p>
+<p>The real motivation was not to automate architecture judgment away. It was to reduce the repetitive friction around preparation so human reviewers can spend more time on the parts that actually matter.</p>
+<hr>
+<h2 id="problem-context-why-existing-workflows-break">Problem Context: Why Existing Workflows Break</h2>
+<p>Across real projects, architecture intent almost never lives in one clean source. It is usually spread across:</p>
+<ul>
+<li>partial YAML or deployment specs,</li>
+<li>markdown design notes,</li>
+<li>code comments and README files,</li>
+<li>issue or pull request discussions,</li>
+<li>outdated diagrams,</li>
+<li>and plain-English explanations written for humans rather than machines.</li>
+</ul>
+<p>That fragmentation creates a practical problem. Before teams can even discuss reliability, scalability, security, cost, or resiliency, they first have to reconstruct the system. That reconstruction step is slow, inconsistent, and highly dependent on whoever happens to know the system best.</p>
+<p>This is exactly where review quality starts to slip. Important architectural risks go unnoticed, diagrams lag behind implementation, and the quality of the review becomes dependent on manual effort rather than the quality of the engineering discussion itself.</p>
+<p>The underlying problem is not lack of technical knowledge. It is lack of a fast, repeatable way to convert messy architecture context into something structured enough to review.</p>
+<hr>
+<h2 id="what-i-built">What I Built</h2>
+<p>The Architecture Review Agent is a full architecture-analysis pipeline that moves from raw architecture input to a review-ready output package.</p>
+<p>In practical terms, it does five things:</p>
+<ol>
+<li>accepts architecture descriptions in both structured and unstructured forms,</li>
+<li>parses or infers components, responsibilities, and relationships,</li>
+<li>evaluates the resulting architecture for severity-grouped risks,</li>
+<li>generates an interactive visual diagram and a presentation-friendly image,</li>
+<li>and exports a structured review bundle that can be reused outside the tool.</li>
+</ol>
+<p>I intentionally supported three execution surfaces because the same review logic needs to fit different workflows:</p>
+<ul>
+<li><strong>CLI mode</strong> for quick local iteration and scenario testing,</li>
+<li><strong>Web App mode</strong> using FastAPI + React for a browser-based collaborative review experience,</li>
+<li><strong>Hosted Agent mode</strong> on Microsoft Foundry for managed deployment, API-style access, and agent-native operating models.</li>
+</ul>
+<p>The important architectural choice here is that these are not separate systems. They all sit on top of the same core review engine, which keeps the output consistent regardless of where the review is triggered.</p>
+<h3 id="what-you-actually-get-back">What you actually get back</h3>
+<p>One of the reasons this sample resonates with teams is that the output is not vague. When the pipeline completes, it returns artifacts that are immediately useful in an engineering workflow:</p>
+<ul>
+<li>an <strong>interactive Excalidraw diagram</strong> that can be edited instead of recreated,</li>
+<li>a <strong>prioritized risk assessment</strong> that groups issues by severity,</li>
+<li>a <strong>component dependency view</strong> that makes coupling and concentration easier to spot,</li>
+<li>and a <strong>structured review bundle</strong> that can be saved, shared, or integrated into later tooling.</li>
+</ul>
+<p>That combination is what makes the sample feel practical. It does not stop at “I detected some components.” It produces a review package that can be discussed, challenged, and reused.</p>
+<hr>
+<h2 id="the-end-to-end-process-properly-explained">The End-to-End Process, Properly Explained</h2>
+<p>One of the reasons I wanted this project documented well is that the workflow itself is more interesting than a one-sentence summary suggests. The sample is not “just a diagram generator.” It is a sequence of engineering-oriented transformations.</p>
+<h3 id="1-input-comes-in-the-way-real-teams-already-describe-systems">1. Input comes in the way real teams already describe systems</h3>
+<p>The first step is deliberately flexible. The sample can work with YAML, markdown, plaintext arrow chains, README content, design notes, and general prose. That flexibility matters because architecture rarely starts in a pristine schema. The tool is meant to meet teams where they are, not force them to rewrite their design before they can review it.</p>
+<h3 id="2-the-pipeline-uses-deterministic-parsing-first">2. The pipeline uses deterministic parsing first</h3>
+<p>When the input is structured enough, the system uses a rule-based parser to recover components and connections quickly. This path is fast, transparent, and easier to validate. It works particularly well for YAML and markdown inputs that already hint at services, nodes, dependencies, or flows.</p>
+<h3 id="3-llm-inference-fills-the-gap-when-the-input-is-messy">3. LLM inference fills the gap when the input is messy</h3>
+<p>If the structured parser cannot recover enough useful architecture, the pipeline falls back to LLM inference. That means the system can still work when the source material is a loose design note, a README, or an informal system description such as “React frontend, Kong gateway, three services, and PostgreSQL.”</p>
+<p>This fallback is a big part of why the project is useful in real engineering environments. The architecture is often there, just not in a machine-friendly format yet.</p>
+<h3 id="4-everything-is-normalized-into-one-internal-architecture-model">4. Everything is normalized into one internal architecture model</h3>
+<p>Whether the architecture is parsed directly or inferred by the model, the result is normalized into a component-and-connection graph. That internal representation becomes the source of truth for everything else in the pipeline: risk analysis, visual layout, dependency mapping, and recommendations.</p>
+<p>Without this normalization step, every downstream feature would become brittle. With it, the rest of the system can reason consistently about the architecture regardless of how the input originally looked.</p>
+<h3 id="5-the-risk-engine-turns-architecture-structure-into-review-findings">5. The risk engine turns architecture structure into review findings</h3>
+<p>Once the system has a usable architecture model, it analyzes it for real engineering concerns: single points of failure, weak redundancy, scalability bottlenecks, risky coupling, poor boundaries, and other architectural anti-patterns. The findings are grouped by severity so the result feels like a review output, not a raw dump of observations.</p>
+<p>This was a major design priority for me. The output needed to change engineering conversations, not just decorate them.</p>
+<h3 id="6-the-diagram-is-generated-as-something-teams-can-keep-using">6. The diagram is generated as something teams can keep using</h3>
+<p>The sample generates an interactive Excalidraw representation and also exports a PNG. That combination matters. Excalidraw keeps the result editable for future design discussions, while PNG makes it easy to paste into slide decks, reports, or wiki pages.</p>
+<p>The system is intentionally designed so the visual is not the only output, but also not an afterthought.</p>
+<h3 id="7-the-review-is-packaged-as-a-reusable-bundle">7. The review is packaged as a reusable bundle</h3>
+<p>The final output includes the diagram files and a structured JSON review bundle. In practice, this means the review can be shared, downloaded, integrated into another tool, or used as input to later workflow steps. That packaging layer is what makes the sample feel operational rather than experimental.</p>
+<p>The bigger point is that the pipeline compresses a lot of manual work into one repeatable flow. What used to take a mix of design interpretation, whiteboarding, spreadsheet-style review tracking, and late-night diagram clean-up can now begin with a single input and end with a review-ready package.</p>
+<hr>
+<h2 id="why-you-should-add-it-to-your-workflow">Why You Should Add It to Your Workflow</h2>
+<p>The article on Tech Community emphasizes that this project is not just interesting because it uses AI. It is useful because it reduces friction in parts of engineering work that are repetitive, error-prone, and easy to postpone.</p>
+<h3 id="1-smart-input-intelligence">1. Smart input intelligence</h3>
+<p>The first big advantage is that the sample works with what teams already have. If the input is structured, the rule-based parser handles it quickly. If the input is unstructured, the model can infer the architecture from code, prose, README files, design notes, or other free-form material.</p>
+<p>That means teams do not have to pause and convert their architecture into a bespoke authoring format just to benefit from review automation.</p>
+<h3 id="2-actionable-context-aware-reviews">2. Actionable, context-aware reviews</h3>
+<p>The second advantage is that the output is review-oriented, not just visually interesting. The system looks for design issues that matter in real systems: missing redundancy, shared database anti-patterns, poor boundaries, weak gateway patterns, scaling pressure, and related concerns.</p>
+<p>It does not replace a formal review board or a security audit, but it does give teams a much faster way to surface the issues worth discussing first.</p>
+<h3 id="3-exports-that-actually-matter">3. Exports that actually matter</h3>
+<p>The third advantage is that the generated artifacts stay useful after the initial run. Teams can use the PNG for documentation and presentations, while the <code>.excalidraw</code> output remains editable for follow-up design work. That combination is much more valuable than a static image that becomes stale the moment the discussion continues.</p>
+<h3 id="a-quick-note-on-ai-recommendations">A quick note on AI recommendations</h3>
+<p>This is an important nuance from the published article: the Architecture Review Agent is meant to be a <strong>co-pilot</strong>, not a final authority. The risk findings and recommendations are there to accelerate review and focus attention, not to replace human expertise. Teams should still validate the output, verify assumptions, and run formal security or compliance reviews where needed.</p>
+<hr>
+<h2 id="evolution-structureiq--official-azure-sample">Evolution: StructureIQ → Official Azure Sample</h2>
+<p>This did not begin as an official sample.</p>
+<p>It evolved from my original project:</p>
+<ul>
+<li><a href="https://github.com/ShivamGoyal03/StructureIQ">StructureIQ</a></li>
+</ul>
+<p>Then expanded into:</p>
+<ul>
+<li><a href="https://github.com/Azure-Samples/agent-architecture-review-sample">Azure-Samples/agent-architecture-review-sample</a></li>
+</ul>
+<p>The evolution required more than a rename. It involved:</p>
+<ul>
+<li>moving from one usage path to <strong>CLI + Web + Hosted Agent</strong> experiences,</li>
+<li>improving outputs from “diagram generation” to <strong>review-oriented analysis + recommendations</strong>,</li>
+<li>producing clearer setup, deployment, and operational guidance,</li>
+<li>and aligning the repository with expectations for official sample consumption.</li>
+</ul>
+<p>That shift matters because it changed the kind of problem the project was solving. StructureIQ showed that architecture understanding and diagram generation could be automated. The Azure Samples version demonstrates how that idea can be delivered as something teams can actually evaluate, run locally, expose through APIs, and deploy into modern Azure/Foundry workflows.</p>
+<hr>
+<h2 id="why-this-matters-in-real-teams">Why This Matters in Real Teams</h2>
+<p>Architecture communication usually breaks at handoff points. Platform teams think in terms of reliability and governance. Application teams think in terms of delivery speed and implementation detail. Review stakeholders want clarity, prioritization, and justification. If the architecture artifacts are incomplete or outdated, those groups end up arguing over reconstruction instead of discussing decisions.</p>
+<p>This sample helps by making the output immediately actionable:</p>
+<ul>
+<li>severity-grouped risks that help prioritize discussion,</li>
+<li>structured recommendations that feel closer to engineering next steps,</li>
+<li>component mapping that exposes relationships and coupling,</li>
+<li>and editable diagrams that teams can refine instead of recreating from scratch.</li>
+</ul>
+<p>That combination lowers the cost of review preparation while increasing the likelihood that teams notice the right issues earlier.</p>
+<hr>
+<h2 id="what-readers-and-builders-get-practically">What Readers and Builders Get (Practically)</h2>
+<p>Readers and builders get more than an abstract concept. The sample includes:</p>
+<ul>
+<li>a realistic scenario walkthrough with expected outputs,</li>
+<li>concrete local run paths for CLI and browser-based review,</li>
+<li>hosted agent deployment guidance for Foundry,</li>
+<li>and a reusable review approach that can adapt to multiple architecture styles instead of one fixed template.</li>
+</ul>
+<p>For developers, this makes the project a useful reference implementation. For engineering teams, it makes the project something they can try without first inventing the workflow themselves.</p>
+<p>It is also useful for a less obvious audience: builders exploring how a code-first agent can move from local experimentation into a hosted, managed deployment model without rewriting the whole application. That is one of the reasons the sample works well both as a product demo and as an architecture for learning.</p>
+<hr>
+<h2 id="scenario-walkthrough-used-in-the-sample">Scenario Walkthrough Used in the Sample</h2>
+<p>Primary scenario:</p>
+<ul>
+<li><a href="https://github.com/Azure-Samples/agent-architecture-review-sample/blob/main/scenarios/microservices_banking.yaml"><code>scenarios/microservices_banking.yaml</code></a></li>
+</ul>
+<p>This scenario was chosen because it combines complexity and realism:</p>
+<ul>
+<li>multiple services,</li>
+<li>event-driven flows,</li>
+<li>critical data stores,</li>
+<li>compliance-sensitive transaction paths.</li>
+</ul>
+<p>It is useful because it resembles the kind of system that actually benefits from review assistance. There are enough moving parts to test parsing quality, enough dependencies to make component mapping meaningful, and enough operational sensitivity to make the risk analysis feel grounded.</p>
+<p>In the sample flow, the user provides the architecture, the system extracts or infers the relationships, runs the review pipeline, renders the diagram, and packages the results for download. That gives new users a very concrete sense of what “good output” looks like before they adapt the sample to their own systems.</p>
+<p>The common output bundle includes:</p>
+<ul>
+<li><code>architecture.excalidraw</code></li>
+<li><code>architecture.png</code></li>
+<li><code>review_bundle.json</code></li>
+</ul>
+<hr>
+<h2 id="screenshots--demo-artifacts">Screenshots &#x26; Demo Artifacts</h2>
+<h3 id="architecture-overview">Architecture overview</h3>
+<p><img src="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/architecture_overview.png" alt="Architecture Overview"></p>
+<h3 id="product-ui-screenshots">Product UI screenshots</h3>
+<ul>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/screenshot_02_sample_loaded.png">Sample loaded</a></li>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/screenshot_03_review_results_diagram.png">Results + diagram</a></li>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/screenshot_04_full_page.png">Full-page review UI</a></li>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/screenshot_05_risks_tab.png">Risks tab</a></li>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/screenshot_06_components_tab.png">Components tab</a></li>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/screenshot_07_recommendations_tab.png">Recommendations tab</a></li>
+</ul>
+<h3 id="demo-video">Demo video</h3>
+<ul>
+<li><a href="https://raw.githubusercontent.com/Azure-Samples/agent-architecture-review-sample/main/screenshots/microservices_banking_demo.mp4">Microservices banking end-to-end demo (MP4)</a></li>
+</ul>
+<p>These media assets are included to make evaluation easier for new users before they commit to setup or deployment.</p>
+<hr>
+<h2 id="deployment-story-why-two-paths">Deployment Story (Why Two Paths)</h2>
+<p>I kept both deployment paths intentionally because organizations optimize for different constraints, and I did not want the sample to assume that every team wants the same operating model.</p>
+<h3 id="core-engine--multiple-surfaces">Core Engine → Multiple Surfaces</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">graph TB</span></span>
+<span class="line"><span style="color:#E1E4E8">    Engine["Core Review Engine&#x3C;br/>(Parsing + Analysis + Generation)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    Engine -->|Local Iteration| CLI["CLI Mode&#x3C;br/>Python Scripts"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Engine -->|Custom Experience| WEB["Web App&#x3C;br/>FastAPI + React&#x3C;br/>App Service"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Engine -->|Managed Platform| AGENT["Hosted Agent&#x3C;br/>Foundry&#x3C;br/>Managed Runtime"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    style Engine fill:#fff9c4,stroke:#f57f17,stroke-width:3px</span></span>
+<span class="line"><span style="color:#E1E4E8">    style CLI fill:#e8f5e9,stroke:#2e7d32</span></span>
+<span class="line"><span style="color:#E1E4E8">    style WEB fill:#fff3e0,stroke:#e65100</span></span>
+<span class="line"><span style="color:#E1E4E8">    style AGENT fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px</span></span></code></pre>
+<h3 id="option-a---web-app-on-azure-app-service">Option A - Web App on Azure App Service</h3>
+<p>The App Service path is the better fit when teams want a custom review application. In this mode, FastAPI exposes endpoints such as <code>/api/review</code>, <code>/api/review/upload</code>, and <code>/api/infer</code>, while the React frontend provides drag-and-drop input, tabbed results, and interactive diagram viewing.</p>
+<p>This path is ideal for teams that want to own the browser experience, control the REST API surface, or integrate architecture review into existing internal tools, portals, or pipelines.</p>
+<h3 id="option-b---hosted-agent-on-microsoft-foundry">Option B - Hosted Agent on Microsoft Foundry</h3>
+<p>The Foundry Hosted Agent path is the better fit when teams want the review capability delivered as a managed agentic service rather than as a custom web app. In this model, the sample uses the Agent Framework hosting adapter to run locally first, then gets packaged as a hosted agent for Microsoft Foundry.</p>
+<h4 id="hosted-agent-workflow-from-local-to-managed">Hosted Agent Workflow: From Local to Managed</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">graph LR</span></span>
+<span class="line"><span style="color:#E1E4E8">    A["Local Development&#x3C;br/>Run &#x26; Validate"] </span></span>
+<span class="line"><span style="color:#E1E4E8">    B["Containerize&#x3C;br/>Linux AMD64"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    C["Deploy&#x3C;br/>Foundry Workflow"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    D["Test&#x3C;br/>Playground/Endpoint"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    E["Publish&#x3C;br/>Teams/Copilot/Channels"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    A -->|Debug locally| B</span></span>
+<span class="line"><span style="color:#E1E4E8">    B -->|Push to Foundry| C</span></span>
+<span class="line"><span style="color:#E1E4E8">    C -->|Validate| D</span></span>
+<span class="line"><span style="color:#E1E4E8">    D -->|Iterate| A</span></span>
+<span class="line"><span style="color:#E1E4E8">    D -->|Live| E</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    style A fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px</span></span>
+<span class="line"><span style="color:#E1E4E8">    style B fill:#fff3e0,stroke:#e65100</span></span>
+<span class="line"><span style="color:#E1E4E8">    style C fill:#f3e5f5,stroke:#6a1b9a</span></span>
+<span class="line"><span style="color:#E1E4E8">    style D fill:#e3f2fd,stroke:#1565c0</span></span>
+<span class="line"><span style="color:#E1E4E8">    style E fill:#fce4ec,stroke:#c2185b,stroke-width:2px</span></span></code></pre>
+<p>What makes this path compelling is the platform support around it. Foundry Hosted Agents provide a managed containerized runtime, Responses-compatible access, managed identity, scaling behavior, observability hooks, and the ability to publish the agent into channels such as Teams or Microsoft 365 Copilot. The VS Code Foundry extension also provides a more guided deployment path, which makes the hosted-agent story easier to understand and demo.</p>
+<h4 id="why-hosted-agent-for-architecture-review">Why Hosted Agent for Architecture Review?</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">graph TD</span></span>
+<span class="line"><span style="color:#E1E4E8">    Hosted["Foundry Hosted Agent&#x3C;br/>(for this sample)"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    Hosted --> A["Managed Runtime&#x3C;br/>No infrastructure to own"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Hosted --> B["Conversation Flow&#x3C;br/>Multi-turn interactions"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Hosted --> C["Identity &#x26; Auth&#x3C;br/>Built-in security"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Hosted --> D["Telemetry &#x26; Observability&#x3C;br/>Usage tracking"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    Hosted --> E["Publish Anywhere&#x3C;br/>Teams, Copilot, channels"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    style Hosted fill:#6a1b9a,color:#fff,stroke:#4527a0,stroke-width:3px</span></span>
+<span class="line"><span style="color:#E1E4E8">    style A fill:#f3e5f5</span></span>
+<span class="line"><span style="color:#E1E4E8">    style B fill:#f3e5f5</span></span>
+<span class="line"><span style="color:#E1E4E8">    style C fill:#f3e5f5</span></span>
+<span class="line"><span style="color:#E1E4E8">    style D fill:#f3e5f5</span></span>
+<span class="line"><span style="color:#E1E4E8">    style E fill:#f3e5f5</span></span></code></pre>
+<p>There is also an important product-level difference between the two paths:</p>
+<h4 id="comparing-the-paths">Comparing the Paths</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="mermaid"><code><span class="line"><span style="color:#E1E4E8">graph TB</span></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph WEB["Web App Path"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        W1["Custom Browser UI"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        W2["REST API Control"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        W3["Infrastructure Ownership"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        W4["Best for: Custom teams&#x3C;br/>&#x26; internal portals"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    subgraph AGENT["Hosted Agent Path"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A1["Managed Runtime"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A2["Conversation Persistence"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A3["Publishing to Teams/Copilot"]</span></span>
+<span class="line"><span style="color:#E1E4E8">        A4["Best for: Managed services&#x3C;br/>&#x26; rapid distribution"]</span></span>
+<span class="line"><span style="color:#E1E4E8">    end</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    style WEB fill:#fff3e0,stroke:#e65100,stroke-width:2px</span></span>
+<span class="line"><span style="color:#E1E4E8">    style AGENT fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px</span></span>
+<span class="line"><span style="color:#E1E4E8">    style W1 fill:#ffecb3</span></span>
+<span class="line"><span style="color:#E1E4E8">    style W2 fill:#ffecb3</span></span>
+<span class="line"><span style="color:#E1E4E8">    style W3 fill:#ffecb3</span></span>
+<span class="line"><span style="color:#E1E4E8">    style W4 fill:#ffe0b2</span></span>
+<span class="line"><span style="color:#E1E4E8">    style A1 fill:#e1bee7</span></span>
+<span class="line"><span style="color:#E1E4E8">    style A2 fill:#e1bee7</span></span>
+<span class="line"><span style="color:#E1E4E8">    style A3 fill:#e1bee7</span></span>
+<span class="line"><span style="color:#E1E4E8">    style A4 fill:#f3e5f5</span></span></code></pre>
+<ul>
+<li>the <strong>Web App</strong> path is ideal when your team wants a custom browser experience, custom REST contracts, and direct control over infra and integrations;</li>
+<li>the <strong>Hosted Agent</strong> path is ideal when you want a managed, scalable, agent-native runtime with conversation persistence, identity, observability, and publishing support built in.</li>
+</ul>
+<p>That distinction is worth spelling out because it helps teams choose the sample for the right reason, rather than assuming one deployment path is inherently “better” than the other.</p>
+<p>Deployment guide:</p>
+<ul>
+<li><a href="https://github.com/Azure-Samples/agent-architecture-review-sample/blob/main/deployment.md">deployment.md</a></li>
+</ul>
+<hr>
+<h2 id="design-principles-behind-the-sample">Design Principles Behind the Sample</h2>
+<ul>
+<li><strong>Input realism over template purity</strong>: handle what teams actually provide.</li>
+<li><strong>Actionability over novelty</strong>: prioritize outputs that change engineering decisions.</li>
+<li><strong>Editable outputs by default</strong>: generated artifacts should be starting points, not dead ends.</li>
+<li><strong>Deployment optionality</strong>: one core engine, multiple production paths.</li>
+</ul>
+<p>These principles shaped almost every decision in the project. Whenever there was a choice between something that looked cleaner in theory and something that worked better in a real engineering workflow, I consistently chose the latter.</p>
+<hr>
+<h2 id="what-changed-for-me-as-a-builder">What Changed for Me as a Builder</h2>
+<p>One of the most interesting parts of this project was realizing that the hard problem was not only architecture parsing. It was designing the handoff between understanding, analysis, visualization, and delivery.</p>
+<p>It was not enough to detect components. The results had to be explainable. It was not enough to generate a diagram. The diagram had to remain editable. It was not enough to expose local code. The project needed a credible path to hosted deployment.</p>
+<p>That is why the sample now works better as both a product-style demo and an engineering reference.</p>
+<p>It also changed how I think about AI tooling for developers. The most useful systems are not always the ones that generate the flashiest output. They are the ones that remove repeated manual translation work and leave teams with something they can immediately act on.</p>
+<hr>
+<h2 id="get-started-in-5-minutes">Get Started in 5 Minutes</h2>
+<p>One of the most appealing parts of the sample is that it is easy to try. If you have Python 3.11+ and access to Azure OpenAI or a Microsoft Foundry project, you can run the project locally, feed it a scenario or a messy architecture description, and see the full review flow for yourself.</p>
+<p>The simplest mental model is:</p>
+<ol>
+<li>clone the repository,</li>
+<li>run the provided setup script,</li>
+<li>start with a sample scenario such as <code>microservices_banking.yaml</code>,</li>
+<li>inspect the generated review artifacts,</li>
+<li>then try your own architecture notes or design docs.</li>
+</ol>
+<p>This matters because adoption improves dramatically when the first experience is short and tangible. Instead of reading about the idea in the abstract, a user can see the actual diagram, risks, and recommendations within minutes.</p>
+<hr>
+<h2 id="learn-more--explore-further">Learn More &#x26; Explore Further</h2>
+<p>If someone reads the article and wants to go deeper, the next best stops are the source repository and the hosted-agent documentation that explains the managed deployment story.</p>
+<ul>
+<li><a href="https://github.com/Azure-Samples/agent-architecture-review-sample">Azure-Samples/agent-architecture-review-sample</a></li>
+<li><a href="https://github.com/excalidraw/excalidraw-mcp">Excalidraw MCP</a></li>
+<li><a href="https://learn.microsoft.com/azure/ai-foundry/agents/concepts/hosted-agents?view=foundry">Hosted agents in Microsoft Foundry</a></li>
+<li><a href="https://learn.microsoft.com/azure/ai-foundry/agents/how-to/vs-code-agents-workflow-pro-code?view=foundry">Create hosted agent workflows in VS Code</a></li>
+</ul>
+<p>Together, these resources make it easier to understand not only what the sample does, but also how its architecture maps to modern hosted-agent development patterns.</p>
+<hr>
+<h2 id="github-stats-snapshot">GitHub Stats Snapshot</h2>
+<p>Live repository growth can be tracked directly on the linked project page:</p>
+<ul>
+<li><a href="/projects/opensource/agent-architecture-review-sample">Project page with GitHub stats</a></li>
+</ul>
+<hr>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Architecture review tooling should adapt to mixed-format, mixed-quality input instead of requiring a perfect spec.</li>
+<li>Review quality improves when outputs are structured, shareable, and editable-not just visually impressive.</li>
+<li>Deterministic parsing plus LLM fallback is a practical combination for real engineering environments.</li>
+<li>Delivery flexibility matters: some teams want a web app, others want a hosted agent, and useful samples should acknowledge that reality.</li>
+</ul>
+<p>If there is one main idea behind the article, it is this: architecture review gets better when we reduce the manual cost of understanding the system.</p>
+<hr>
+<h2 id="links">Links</h2>
+<ul>
+<li>Official sample repo: <a href="https://github.com/Azure-Samples/agent-architecture-review-sample">Azure-Samples/agent-architecture-review-sample</a></li>
+<li>Origin project: <a href="https://github.com/ShivamGoyal03/StructureIQ">StructureIQ</a></li>
+<li>Project detail page: <a href="/projects/opensource/agent-architecture-review-sample">Agent Architecture Review Sample</a></li>
+</ul>
+<hr>
+<h2 id="read-the-full-article">Read the Full Article</h2>
+<ul>
+<li><a href="https://techcommunity.microsoft.com/blog/educatordeveloperblog/stop-drawing-architecture-diagrams-manually-meet-the-open-source-ai-architecture/4496271">Microsoft Tech Community post</a></li>
+</ul> </div> <!-- Back link --> <div class="mt-12 pt-6 border-t border-[var(--border)]"> <a href="/articles" class="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors"> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to all articles
+</a> </div> </article>  </main> <footer class="border-t border-[var(--border)] bg-[var(--surface)]"> <div class="mx-auto max-w-7xl px-6 py-12"> <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> <!-- Brand --> <div> <div class="flex items-center gap-3 mb-4"> <div class="sg-logo" aria-label="SG"> <svg width="36" height="36" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"> <defs> <linearGradient id="logo-g-f" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#818cf8"></stop> <stop offset="50%" stop-color="#a78bfa"></stop> <stop offset="100%" stop-color="#06b6d4"></stop> </linearGradient> </defs> <rect class="sg-logo-bg" width="32" height="32" rx="8"></rect> <rect x="1.5" y="1.5" width="29" height="29" rx="6.5" fill="none" stroke="url(#logo-g-f)" stroke-width="1.2" opacity="0.6"></rect> <text x="4" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-f)" opacity="0.4">&lt;</text> <text x="22" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-f)" opacity="0.4">/&gt;</text> <text x="16" y="22" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="14" font-weight="800" fill="url(#logo-g-f)" text-anchor="middle">SG</text> <circle cx="6" cy="5" r="1.2" fill="#06b6d4" opacity="0.7"></circle> <circle cx="26" cy="5" r="1" fill="#818cf8" opacity="0.6"></circle> <circle cx="26" cy="27" r="1.2" fill="#a78bfa" opacity="0.5"></circle> <circle cx="6" cy="27" r="1" fill="#06b6d4" opacity="0.4"></circle> </svg> </div> <span class="text-lg font-bold">Shivam Goyal</span> </div> <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+Microsoft MVP (AI) | Senior Analyst @ EY<br>
+Building intelligent AI solutions and democratizing AI.
+</p> </div> <!-- Quick Links --> <div> <h4 class="font-semibold text-sm uppercase tracking-wider text-[var(--text-muted)] mb-4">Navigate</h4> <div class="grid grid-cols-2 gap-2"> <a href="/about" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">About</a> <a href="/projects" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">Projects</a> <a href="/articles" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">Articles</a> <a href="/mvp" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">MVP Work</a> <a href="/endorsements" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">Endorsements</a> </div> </div> <!-- Social --> <div> <h4 class="font-semibold text-sm uppercase tracking-wider text-[var(--text-muted)] mb-4">Connect</h4> <div class="flex gap-3"> <a href="https://linkedin.com/in/shivam2003" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--surface-light)] text-[var(--text-muted)] hover:text-[var(--color-primary-light)] hover:bg-[var(--color-primary)]/10 transition-all" aria-label="LinkedIn"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a><a href="https://github.com/ShivamGoyal03" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--surface-light)] text-[var(--text-muted)] hover:text-[var(--color-primary-light)] hover:bg-[var(--color-primary)]/10 transition-all" aria-label="GitHub"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path> </svg> </a> </div> <div class="mt-4"> <p class="text-[11px] uppercase tracking-wider text-[var(--text-muted)]/80 mb-2">Tech Community Profiles</p> <div class="space-y-2"> <a href="https://techcommunity.microsoft.com/users/shivamgoyal03/2181140" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-md border border-[var(--border)] bg-[var(--surface-light)]/60 px-2.5 py-1.5 text-xs text-[var(--text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary-light)] transition-all"> <span class="inline-flex items-center gap-2"> <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"></path> </svg> Tech Community </span> <span class="rounded-full border border-[var(--border)] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-[var(--text-muted)]">  </span> </a><a href="https://techcommunity.microsoft.com/users/shivamgoyal/2694803" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-md border border-[var(--border)] bg-[var(--surface-light)]/60 px-2.5 py-1.5 text-xs text-[var(--text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary-light)] transition-all"> <span class="inline-flex items-center gap-2"> <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"></path> </svg> Tech Community (MVP) </span> <span class="rounded-full border border-[var(--border)] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-[var(--text-muted)]"> Official Account </span> </a> </div> </div> <a href="mailto:shivamgoyal2003@gmail.com" class="inline-flex items-center gap-2 mt-4 text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors"> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path> </svg>
+shivamgoyal2003@gmail.com
+</a> </div> </div> <div class="mt-10 border-t border-[var(--border)] pt-5 text-center"> <p class="text-xs text-[var(--text-muted)]">
+© 2026 Copyright Shivam Goyal. All rights reserved.
+</p> </div> </div> </footer> </body></html> <script>
+  (() => {
+    const contentRoot = document.querySelector('.article-content');
+    if (!contentRoot) return;
+
+    const normalizeMarkdownLinks = () => {
+      const anchors = [...contentRoot.querySelectorAll('a[href]')];
+      anchors.forEach((a) => {
+        const raw = a.getAttribute('href') || '';
+        // Skip external URLs, hashes, and non-markdown links
+        if (!raw || raw.startsWith('#') || /^https?:\/\//i.test(raw) || /^mailto:/i.test(raw)) return;
+
+        // Convert local markdown links to route-friendly paths (remove .md)
+        const m = raw.match(/^(.*)\.md(#[^#]+)?$/i);
+        if (!m) return;
+
+        const withoutExt = `${m[1]}${m[2] || ''}`;
+        a.setAttribute('href', withoutExt);
+      });
+    };
+
+    normalizeMarkdownLinks();
+
+    const headings = [...contentRoot.querySelectorAll('h2, h3')]
+      .filter((h) => (h.textContent || '').trim().length > 0);
+
+    if (!headings.length) return;
+
+    const ensureId = (el, fallback) => {
+      if (el.id) return el.id;
+      const base = (el.textContent || fallback || 'section')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+      el.id = `doc-${base || 'section'}`;
+      return el.id;
+    };
+
+    const controls = document.createElement('div');
+    controls.className = 'doc-controls';
+
+    const select = document.createElement('select');
+    select.className = 'doc-jump-select';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Jump to section...';
+    select.appendChild(placeholder);
+
+    headings.forEach((heading, idx) => {
+      const id = ensureId(heading, `section-${idx + 1}`);
+      const option = document.createElement('option');
+      option.value = id;
+      option.textContent = `${heading.tagName === 'H3' ? '↳ ' : ''}${heading.textContent?.trim() || `Section ${idx + 1}`}`;
+      select.appendChild(option);
+    });
+
+    controls.append(select);
+    contentRoot.prepend(controls);
+
+    select.addEventListener('change', () => {
+      if (!select.value) return;
+      const target = document.getElementById(select.value);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    const detectCardType = (headingText) => {
+      const t = (headingText || '').toLowerCase();
+      if (t.includes('tech stack') || t.includes('technology stack') || t.includes('framework')) return 'tech';
+      if (t.includes('result') || t.includes('outcome') || t.includes('impact')) return 'result';
+      if (t.includes('key feature') || t === 'features' || t.includes('feature') || t.includes('capabilities')) return 'feature';
+      return null;
+    };
+
+    const iconForType = (type) => {
+      if (type === 'tech') return '🧰';
+      if (type === 'result') return '📈';
+      return '✨';
+    };
+
+    const findListForHeading = (heading) => {
+      let next = heading.nextElementSibling;
+      let hops = 0;
+      while (next && hops < 4) {
+        if (next.matches('ul, ol')) return next;
+        if (next.matches('h2, h3')) break;
+        next = next.nextElementSibling;
+        hops += 1;
+      }
+      return null;
+    };
+
+    const enhanceIconCards = () => {
+      const targetHeadings = [...contentRoot.querySelectorAll('h2, h3')];
+      targetHeadings.forEach((heading) => {
+        const type = detectCardType(heading.textContent || '');
+        if (!type) return;
+
+        const list = findListForHeading(heading);
+        if (!list || list.dataset.iconCardsEnhanced === 'true') return;
+
+        const items = [...list.querySelectorAll(':scope > li')];
+        if (!items.length) return;
+
+        const grid = document.createElement('div');
+        grid.className = 'icon-card-grid';
+
+        items.forEach((li) => {
+          const card = document.createElement('article');
+          card.className = 'icon-card';
+
+          const icon = document.createElement('span');
+          icon.className = 'icon-card-icon';
+          icon.textContent = iconForType(type);
+
+          const body = document.createElement('div');
+          body.className = 'icon-card-body';
+          body.innerHTML = li.innerHTML;
+
+          card.append(icon, body);
+          grid.appendChild(card);
+        });
+
+        list.dataset.iconCardsEnhanced = 'true';
+        list.replaceWith(grid);
+      });
+    };
+
+    enhanceIconCards();
+
+  })();
+</script>
