@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="AI-orchestrated browser automation framework that fills and submits web forms with minimal manual input."><meta name="author" content="Shivam Goyal"><link rel="canonical" href="https://shivamgoyal03.github.io/projects/innovation/formpilot/"><meta property="og:title" content="FormPilot - Web Form Automation | Shivam Goyal"><meta property="og:description" content="AI-orchestrated browser automation framework that fills and submits web forms with minimal manual input."><meta property="og:type" content="website"><meta property="og:url" content="https://shivamgoyal03.github.io/projects/innovation/formpilot/"><meta property="og:image" content="https://shivamgoyal03.github.io/assets/img/social/og-preview.jpg"><meta property="og:image:secure_url" content="https://shivamgoyal03.github.io/assets/img/social/og-preview.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Shivam Goyal - Microsoft MVP (AI), Senior Analyst @ EY, AI Engineer and Agentic Systems Builder"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="FormPilot - Web Form Automation | Shivam Goyal"><meta name="twitter:description" content="AI-orchestrated browser automation framework that fills and submits web forms with minimal manual input."><meta name="twitter:image" content="https://shivamgoyal03.github.io/assets/img/social/og-preview.jpg"><meta name="twitter:image:alt" content="Shivam Goyal - Microsoft MVP (AI), Senior Analyst @ EY, AI Engineer and Agentic Systems Builder"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><title>FormPilot - Web Form Automation | Shivam Goyal</title><!-- Google Site Verification --><meta name="google-site-verification" content="CtC6-JsgeM6SWgAI-49ulbV17PK5U6bzr4JXZ3A8i3s"><!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MTXJNXC2');</script><!-- End Google Tag Manager --><!-- Google Analytics 4 (GA4) - property: G-EGMZS4BKN8 --><script async src="https://www.googletagmanager.com/gtag/js?id=G-EGMZS4BKN8"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EGMZS4BKN8');
+    </script><!-- End Google Analytics 4 --><!-- Prevent flash of wrong theme --><script>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light' || (!stored && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script><script type="module" src="/assets/BaseLayout.astro_astro_type_script_index_0_lang.q6GZMSBH.js"></script><link rel="stylesheet" href="/assets/index.DzEYfdh4.css"></head> <body class="min-h-screen flex flex-col"> <!-- Google Tag Manager (noscript) --> <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTXJNXC2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) --> <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-xl"> <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"> <!-- Logo --> <a href="/" class="flex items-center gap-3 group"> <div class="sg-logo" aria-label="SG"> <svg width="36" height="36" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"> <defs> <linearGradient id="logo-g-h" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#818cf8"></stop> <stop offset="50%" stop-color="#a78bfa"></stop> <stop offset="100%" stop-color="#06b6d4"></stop> </linearGradient> </defs> <rect class="sg-logo-bg" width="32" height="32" rx="8"></rect> <rect x="1.5" y="1.5" width="29" height="29" rx="6.5" fill="none" stroke="url(#logo-g-h)" stroke-width="1.2" opacity="0.6"></rect> <text x="4" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-h)" opacity="0.4">&lt;</text> <text x="22" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-h)" opacity="0.4">/&gt;</text> <text x="16" y="22" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="14" font-weight="800" fill="url(#logo-g-h)" text-anchor="middle">SG</text> <circle cx="6" cy="5" r="1.2" fill="#06b6d4" opacity="0.7"></circle> <circle cx="26" cy="5" r="1" fill="#818cf8" opacity="0.6"></circle> <circle cx="26" cy="27" r="1.2" fill="#a78bfa" opacity="0.5"></circle> <circle cx="6" cy="27" r="1" fill="#06b6d4" opacity="0.4"></circle> </svg> </div> <span class="text-lg font-bold text-[var(--text)] group-hover:text-[var(--color-primary-light)] transition-colors">
+Shivam Goyal
+</span> </a> <!-- Desktop Nav --> <div class="hidden md:flex items-center gap-1"> <a href="/" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Home </a><a href="/about" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> About </a><a href="/projects" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-[var(--color-primary)]/15 text-[var(--color-primary-light)]"> Projects </a><a href="/articles" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Articles </a><a href="/mvp" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> MVP </a><a href="/endorsements" class="px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Endorsements </a> </div> <!-- Theme Toggle + Search + Mobile Toggle --> <div class="flex items-center gap-2"> <!-- Theme Toggle --> <button id="theme-toggle" class="theme-btn flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)] transition-all" aria-label="Toggle theme" title="Toggle theme"> <!-- Sun icon (shown in dark mode) --> <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path> </svg> <!-- Moon icon (shown in light mode) --> <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path> </svg> </button> <button id="search-toggle" class="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)] transition-all" aria-label="Toggle search"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path> </svg> </button> <button id="mobile-menu-toggle" class="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)] transition-all md:hidden" aria-label="Toggle menu"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path> </svg> </button> </div> </nav> <!-- Mobile Nav --> <div id="mobile-menu" class="hidden border-t border-[var(--border)] bg-[var(--surface)] px-6 py-4 md:hidden"> <div class="flex flex-col gap-1"> <a href="/" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Home </a><a href="/about" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> About </a><a href="/projects" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all bg-[var(--color-primary)]/15 text-[var(--color-primary-light)]"> Projects </a><a href="/articles" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Articles </a><a href="/mvp" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> MVP </a><a href="/endorsements" class="px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-light)]"> Endorsements </a> </div> </div> <!-- Search Overlay --> <div id="search-overlay" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm"> <div class="mx-auto mt-24 max-w-2xl px-4"> <div class="glass-card p-4"> <div class="flex items-center gap-3 mb-4"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path> </svg> <input id="search-input" type="text" placeholder="Search articles, projects, topics..." class="flex-1 bg-transparent text-[var(--text)] placeholder-[var(--text-muted)] outline-none text-lg"> <button id="search-close" class="text-[var(--text-muted)] hover:text-[var(--text)] text-sm font-medium"> <span class="inline md:hidden">Close</span> <span class="hidden md:inline">ESC</span> </button> </div> <div id="search-results" class="max-h-96 overflow-y-auto"> <p class="text-center text-[var(--text-muted)] text-sm py-6">Type to search...</p> </div> </div> </div> </div> </header> <!-- Search data injected at build time; read by the Fuse.js script below --> <script type="application/json" id="search-data">[{"title":"Step-by-Step Tutorial: Building an AI Agent Using Microsoft Foundry","description":"A comprehensive, hands-on tutorial for building AI agents using Microsoft Foundry and connected services. • ~17.5K views","url":"/articles/guides/azure-ai-agent-tutorial","category":"Guides"},{"title":"Getting Started With Azure AI Studio","description":"A comprehensive guide introducing developers to Azure AI Studio, Microsoft's integrated AI development environment. • ~16.4K views","url":"/articles/guides/azure-ai-studio-guide","category":"Guides"},{"title":"Exploring AI Development and Management: A Journey through Contoso Chat and LLM Ops","description":"A comprehensive exploration of the complete AI application lifecycle through Contoso Chat and LLM Ops practices. • ~14.8K views","url":"/articles/guides/ai-dev-management-llmops","category":"Guides"},{"title":"Stop Drawing Architecture Diagrams Manually: Meet the Open Source AI Architecture Review Sample","description":"How and why I built the Architecture Review Agent, what changed from StructureIQ to the official Azure Sample, and how it delivers practical architecture reviews with visual outputs. • ~13.8K views","url":"/articles/projects/agent-architecture-review-sample-article","category":"Projects"},{"title":"Exploring Azure AI Services: Introduction and its Use Cases","description":"A detailed exploration of Azure AI Services, their capabilities, and practical use cases. • ~8.6K views","url":"/articles/guides/azure-ai-services-intro","category":"Guides"},{"title":"AI Agents: The Multi-Agent Design Pattern - Part 8","description":"Coordinating multiple agents for collaborative problem-solving and task orchestration. • ~5.7K views","url":"/articles/series/part-8-multi-agent","category":"Series"},{"title":"Unlocking the Power of AI Agents: An Introductory Guide - Part 1","description":"A comprehensive introduction to AI agents, establishing conceptual foundations and practical insights. • ~4.9K views","url":"/articles/series/part-1-intro","category":"Series"},{"title":"AI Agents: Exploring Agentic Frameworks - Part 2","description":"Comparing frameworks and tools for building AI agents, from AutoGen to Semantic Kernel. • ~4.3K views","url":"/articles/series/part-2-frameworks","category":"Series"},{"title":"AI Agents: Mastering Agentic RAG - Part 5","description":"Combining retrieval-augmented generation with agent architectures for data-aware AI systems. • ~3.8K views","url":"/articles/series/part-5-rag","category":"Series"},{"title":"Unlocking the Power of Your Data: Build Smarter Apps with AI","description":"A comprehensive guide to building AI applications that leverage organizational data through RAG patterns. • ~3.4K views","url":"/articles/guides/rag-with-llamaindex","category":"Guides"},{"title":"AI Agents: Key Principles and Guidelines - Part 3","description":"Core design principles for building effective, reliable AI agents. • ~3.3K views","url":"/articles/series/part-3-principles","category":"Series"},{"title":"AI Agents: Planning and Orchestration with the Planning Design Pattern - Part 7","description":"Using planning patterns for complex task execution and agent orchestration. • ~2.7K views","url":"/articles/series/part-7-planning","category":"Series"},{"title":"CodeNull - No-Code Website Builder Platform","description":"AI-powered no-code builder that turns natural-language prompts into full-stack deployable web apps.","url":"/projects/flagship-projects/codenull","category":"Project"},{"title":"LexiVerse - AI Marketing Writing Assistant","description":"AI writing assistant that generates on-brand marketing copy - from blog posts to ads - in seconds.","url":"/projects/flagship-projects/lexiverse","category":"Project"},{"title":"MVP Activity AutoPilot","description":"Agentic utility that automates repetitive MVP portal contribution entries using browser automation and AI.","url":"/projects/flagship-projects/mvp-activity-autopilot","category":"Project"},{"title":"Questro - Document Q&A Chatbot","description":"Chat with PDF, DOCX, and TXT files using retrieval-augmented generation powered by LlamaIndex and OpenAI.","url":"/projects/flagship-projects/questro","category":"Project"},{"title":"Synthetify - Synthetic Time-Series Generator","description":"Interactive toolkit for generating and imputing synthetic time-series data using statistical and ML models.","url":"/projects/flagship-projects/synthetify","category":"Project"},{"title":"AI Gesture Virtual Keyboard","description":"Touchless onscreen keyboard controlled by hand gestures detected via real-time computer vision.","url":"/projects/innovation/ai-keyboard","category":"Project"},{"title":"AICalcX - AI Project Cost Calculator","description":"Agentic cost intelligence system that moves AI infrastructure cost estimation into the architecture design phase - before resources are provisioned. Core token and compute cost modules are functional; full multi-cloud support is paused pending stable unified pricing APIs. See BLOCKERS.md in the repo for the full ecosystem analysis.","url":"/projects/innovation/aicalcx","category":"Project"},{"title":"FormPilot - Web Form Automation","description":"AI-orchestrated browser automation framework that fills and submits web forms with minimal manual input.","url":"/projects/innovation/formpilot","category":"Project"},{"title":"MediMind - Medical Symptom Analyzer","description":"AI-powered symptom checker that uses RNN and LLM models to explore clinical NLP in a safe educational context.","url":"/projects/innovation/medimind","category":"Project"},{"title":"Foundry Toolkit for VS Code - Agents Workshop (Microsoft Foundry)","description":"Official hands-on workshop built for the Foundry Toolkit GA launch. Two end-to-end labs covering single-agent and multi-agent development, testing, and deployment on Microsoft Foundry-entirely from VS Code.","url":"/projects/flagship-projects/foundry-agents-workshop","category":"Project"},{"title":"PrivyDoc - Local Document Intelligence","description":"Fully local AI document assistant - zero data sent to the cloud, runs on-device via Foundry Local for complete privacy.","url":"/projects/innovation/privydoc","category":"Project"},{"title":"RoamMind - Travel AI Assistant","description":"Conversational travel planner that orchestrates flights, hotels, restaurants, and activities from a single AI interface.","url":"/projects/innovation/roammind","category":"Project"},{"title":"Agent Architecture Review Sample (Azure Samples)","description":"Official Azure Sample that reviews architecture inputs, detects risks, and generates interactive Excalidraw + PNG diagrams with CLI, API, and hosted agent deployment paths.","url":"/projects/opensource/agent-architecture-review-sample","category":"Open Source"},{"title":"AI Agents for Beginners Contributions","description":"16 merged PRs into Microsoft’s AI Agents for Beginners repo - multi-agent orchestration, vision workflows, and framework guides used by thousands.","url":"/projects/opensource/ai-agents-beginners","category":"Open Source"},{"title":"Microsoft Foundry Webinar Series","description":"Webinar content and framework comparisons helping developers choose and build with Microsoft Foundry and agentic frameworks.","url":"/projects/opensource/azure-foundry-webinar","category":"Open Source"},{"title":"Agentic RAG Implementation","description":"Practical Agentic RAG examples using Semantic Kernel, AutoGen, and Azure AI Search - merged into Microsoft’s official AI Agents repo.","url":"/projects/opensource/agentic-rag","category":"Open Source"},{"title":"About","description":"Education, experience, certifications","url":"/about","category":"Page"},{"title":"MVP Portfolio","description":"Microsoft MVP contributions and recognition","url":"/mvp","category":"Page"},{"title":"Endorsements","description":"Testimonials from Microsoft leaders","url":"/endorsements","category":"Page"}]</script> <script>
+  // ─── Theme Toggle ───
+  // NOTE: This script block uses define:vars and is rendered inline by Astro,
+  // which means TypeScript type annotations are NOT stripped. Keep this plain JS.
+  function getThemePreference() {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') return stored;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    const root = document.documentElement;
+    root.classList.toggle('light', theme === 'light');
+    // Update icons
+    const sun = document.getElementById('icon-sun');
+    const moon = document.getElementById('icon-moon');
+    if (sun && moon) {
+      sun.classList.toggle('hidden', theme === 'light');
+      moon.classList.toggle('hidden', theme === 'dark');
+    }
+  }
+
+  // Apply immediately
+  applyTheme(getThemePreference());
+
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const current = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
+  // Listen for OS preference changes
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
+  // ─── Mobile menu toggle ───
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+
+  // Search toggle
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchInput = document.getElementById('search-input');
+
+  document.getElementById('search-toggle')?.addEventListener('click', () => {
+    searchOverlay?.classList.remove('hidden');
+    searchInput?.focus();
+  });
+
+  document.getElementById('search-close')?.addEventListener('click', () => {
+    searchOverlay?.classList.add('hidden');
+  });
+
+  searchOverlay?.addEventListener('click', (e) => {
+    if (e.target === searchOverlay) {
+      searchOverlay.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchOverlay?.classList.add('hidden');
+    }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      searchOverlay?.classList.remove('hidden');
+      searchInput?.focus();
+    }
+  });
+
+</script> <script type="module" src="/assets/Header.astro_astro_type_script_index_0_lang.hv1LyppO.js"></script> <main class="flex-1">  <article class="mx-auto max-w-4xl px-6 py-12"> <nav class="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-8"> <a href="/" class="hover:text-[var(--color-primary-light)] transition-colors">Home</a> <span>/</span> <a href="/projects" class="hover:text-[var(--color-primary-light)] transition-colors">Projects</a> <span>/</span> <span class="text-[var(--text)]">FormPilot - Web Form Automation</span> </nav> <header class="mb-8"> <h1 class="text-3xl md:text-4xl font-bold gradient-text mb-3">FormPilot - Web Form Automation</h1> <p class="text-lg text-[var(--text-muted)]">AI-orchestrated browser automation framework that fills and submits web forms with minimal manual input.</p> <div class="mt-4 flex flex-wrap items-center gap-4 text-sm glass-card p-3 not-prose"> <a href="https://github.com/ShivamGoyal03/FormPilot" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 font-medium text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors"> <svg class="h-4 w-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.097.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path> </svg> ShivamGoyal03/FormPilot </a> <span class="inline-flex items-center gap-1 text-[var(--text-muted)]"> <svg class="h-3.5 w-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path> </svg> 5 stars
+</span> <span class="inline-flex items-center gap-1 text-[var(--text-muted)]"> <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 16 16"> <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path> </svg> 1 forks
+</span> </div> </header> <div class="prose article-content"> <h1 id="formpilot---web-form-automation-framework">FormPilot - Web Form Automation Framework</h1>
+<p><strong>2025</strong> | Python, Playwright MCP, Azure OpenAI, Agno | <a href="https://github.com/ShivamGoyal03/FormPilot">GitHub</a></p>
+<p>FormPilot is a local automation framework that reads structured markdown files and fills out web forms automatically using Playwright MCP and Azure OpenAI. Built for developers and content creators who need to automate repetitive form submissions while maintaining complete control over their data.</p>
+<h2 id="problem--motivation">Problem / Motivation</h2>
+<p>Manual form submission is tedious and error-prone, especially when dealing with:</p>
+<ul>
+<li><strong>Repetitive data entry</strong> across multiple platforms or submissions</li>
+<li><strong>Bulk content management</strong> requiring consistent formatting and validation</li>
+<li><strong>Time-consuming workflows</strong> where form filling disrupts productivity</li>
+<li><strong>Data inconsistencies</strong> from manual entry mistakes</li>
+<li><strong>Limited automation tools</strong> that require complex configuration or cloud dependencies</li>
+</ul>
+<p>FormPilot addresses these challenges by providing a <strong>markdown-driven, AI-powered automation solution</strong> that runs entirely on your local machine, ensuring data privacy while maximizing efficiency.</p>
+<h2 id="core-functionalities">Core Functionalities</h2>
+<h3 id="markdown-driven-data-management">Markdown-Driven Data Management</h3>
+<ul>
+<li>Define form data in <strong>simple, structured markdown files</strong> with clear field definitions</li>
+<li>Maintain <strong>version control</strong> over form data using standard markdown syntax</li>
+<li>Enable <strong>easy collaboration</strong> through readable, editable text files</li>
+</ul>
+<h3 id="ai-powered-form-automation">AI-Powered Form Automation</h3>
+<ul>
+<li>Uses <strong>Azure OpenAI (GPT-4/GPT-4o)</strong> for intelligent form field matching and content generation</li>
+<li>Implements <strong>fuzzy matching</strong> to intelligently map content to form dropdowns and fields</li>
+<li>Auto-generates <strong>missing descriptions</strong> when fields are incomplete</li>
+<li><strong>Rewrites content</strong> automatically to meet character limits and formatting requirements</li>
+</ul>
+<h3 id="playwright-mcp-integration">Playwright MCP Integration</h3>
+<ul>
+<li>Leverages <strong>Model Context Protocol</strong> for robust browser automation</li>
+<li>Implements <strong>snapshot-based error recovery</strong> for resilient form filling</li>
+<li>Provides <strong>interactive review mode</strong> for verification before submission</li>
+<li>Handles <strong>complex form interactions</strong> including dropdowns, date pickers, and multi-step workflows</li>
+</ul>
+<h3 id="smart-processing-features">Smart Processing Features</h3>
+<ul>
+<li><strong>Batch processing</strong> with configurable batch sizes for efficiency</li>
+<li><strong>Intelligent caching</strong> of dropdown options and generated content</li>
+<li><strong>Adaptive retry logic</strong> with exponential backoff for rate limiting</li>
+<li><strong>Sequential or batched modes</strong> to optimize for speed or control</li>
+</ul>
+<h2 id="description--how-it-works">Description / How It Works</h2>
+<ol>
+<li><strong>Data Preparation</strong>: Users create structured markdown files with activity/form data following a defined schema</li>
+<li><strong>Parsing &#x26; Validation</strong>: Azure OpenAI parses markdown, validates required fields, and generates missing content</li>
+<li><strong>Browser Automation</strong>: Playwright MCP initializes browser automation and navigates to target forms</li>
+<li><strong>Intelligent Form Filling</strong>: AI-powered agent matches data to form fields using fuzzy matching and smart field selection</li>
+<li><strong>Error Handling</strong>: Automatic retry logic with snapshot-based recovery handles failures gracefully</li>
+<li><strong>Submission</strong>: Optional confirmation step before final submission, with detailed logging</li>
+</ol>
+<h2 id="challenges--issues-addressed">Challenges &#x26; Issues Addressed</h2>
+<ul>
+<li><strong>Data Privacy</strong>: All processing happens locally-no external data transmission except Azure OpenAI API calls</li>
+<li><strong>Form Field Matching</strong>: Fuzzy matching and fallback options handle varying dropdown labels and field formats</li>
+<li><strong>Content Constraints</strong>: Automatic content rewriting ensures compliance with character limits</li>
+<li><strong>Network Reliability</strong>: Adaptive retry logic with exponential backoff handles rate limits and timeouts</li>
+<li><strong>Browser Automation Stability</strong>: Snapshot-based error recovery and element detection retry logic</li>
+<li><strong>Batch Processing</strong>: Configurable batch sizes and processing modes optimize throughput</li>
+</ul>
+<h2 id="tech-stack--frameworks">Tech Stack &#x26; Frameworks</h2>
+<ul>
+<li><strong>Languages / Frameworks</strong>: Python 3.11+, Node.js (for Playwright MCP)</li>
+<li><strong>AI / ML</strong>: Azure OpenAI (GPT-4/GPT-4o), Agno agent framework</li>
+<li><strong>Browser Automation</strong>: Playwright MCP (Model Context Protocol)</li>
+<li><strong>Data Format</strong>: Markdown with structured field definitions</li>
+<li><strong>Environment</strong>: Local execution with environment variable configuration</li>
+</ul>
+<h2 id="features--capabilities">Features / Capabilities</h2>
+<ul>
+<li><strong>Local Processing</strong>: Complete data privacy with on-device processing</li>
+<li><strong>Markdown-Based Data</strong>: Version-controllable, human-readable form definitions</li>
+<li><strong>Smart Technology Mapping</strong>: Analyzes content to select appropriate technology categories</li>
+<li><strong>Auto-Generated Content</strong>: Creates internal notes and descriptions when missing</li>
+<li><strong>Character Limit Compliance</strong>: Automatically rewrites content to fit form constraints</li>
+<li><strong>Batch &#x26; Sequential Modes</strong>: Process multiple entries efficiently</li>
+<li><strong>Interactive Review</strong>: Optional confirmation before each submission</li>
+<li><strong>Fast Mode</strong>: Optimized performance for bulk operations</li>
+<li><strong>Error Recovery</strong>: Adaptive retry logic with snapshot-based recovery</li>
+<li><strong>Progress Tracking</strong>: Detailed timing and status information</li>
+</ul>
+<h2 id="potential-applications">Potential Applications</h2>
+<ul>
+<li><strong>Content Management</strong>: Automate submissions to blogging platforms, community sites, and portfolios</li>
+<li><strong>Research Documentation</strong>: Bulk entry of research activities and publications</li>
+<li><strong>Portfolio Management</strong>: Batch updates to professional profiles (LinkedIn, GitHub, personal sites)</li>
+<li><strong>Event Registration</strong>: Automated workshop, conference, and webinar submissions</li>
+<li><strong>Activity Tracking</strong>: Streamline logging of community contributions and speaking engagements</li>
+</ul>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<ul>
+<li>Expand support for additional form types (file uploads, rich text editors)</li>
+<li>Add multi-browser support (Chrome, Firefox, Edge)</li>
+<li>Implement form template recognition for automatic field detection</li>
+<li>Add support for YAML and JSON data formats alongside Markdown</li>
+<li>Develop browser extension for one-click form automation</li>
+<li>Integrate with CI/CD pipelines for automated form testing</li>
+</ul>
+<h2 id="learning-outcomes">Learning Outcomes</h2>
+<ul>
+<li>Built a <strong>local-first automation framework</strong> prioritizing data privacy and user control</li>
+<li>Integrated <strong>Playwright MCP</strong> for robust, snapshot-driven browser automation</li>
+<li>Implemented <strong>AI-powered fuzzy matching</strong> for intelligent form field selection</li>
+<li>Developed <strong>adaptive error handling</strong> with exponential backoff and retry logic</li>
+<li>Combined <strong>structured markdown parsing</strong> with LLM content generation</li>
+<li>Learned <strong>batch processing patterns</strong> for optimizing automation workflows</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li>GitHub Repository: <a href="https://github.com/ShivamGoyal03/FormPilot">FormPilot</a></li>
+</ul>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>FormPilot is built for educational and productivity purposes. Users are responsible for ensuring compliance with target website terms of service, respecting rate limits, and using the tool ethically and responsibly.</p>
+</blockquote> </div> <div class="mt-12 pt-6 border-t border-[var(--border)]"> <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"> <a href="/projects" class="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors"> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path> </svg>
+Back to all projects
+</a> <div class="flex flex-wrap items-center gap-4 text-sm"> <a href="/projects/innovation/aicalcx" class="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">
+← Previous
+</a> <a href="/projects/innovation/medimind" class="inline-flex items-center gap-1.5 text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">
+Next →
+</a> </div> </div> </div> </article> <script type="application/json" id="proj-stats">{"microsoft/ai-agents-for-beginners":{"stars":61599,"forks":20861},"microsoft/mcp-for-beginners":{"stars":16109,"forks":5262},"ShivamGoyal03/RoamMind":{"stars":12,"forks":4},"ShivamGoyal03/MediMind":{"stars":1,"forks":0},"ShivamGoyal03/Azure-Foundry-Webinar":{"stars":10,"forks":1},"ShivamGoyal03/AI-Onscreen-Virtual-Keyboard":{"stars":0,"forks":0},"ShivamGoyal03/LexiVerse":{"stars":0,"forks":0},"ShivamGoyal03/PrivyDoc":{"stars":10,"forks":4},"ShivamGoyal03/FormPilot":{"stars":5,"forks":1},"ShivamGoyal03/AICalcX":{"stars":1,"forks":0},"ShivamGoyal03/Agentic-RAG":{"stars":1,"forks":0},"Azure-Samples/agent-architecture-review-sample":{"stars":72,"forks":35},"microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab":{"stars":18,"forks":12}}</script>  </main> <footer class="border-t border-[var(--border)] bg-[var(--surface)]"> <div class="mx-auto max-w-7xl px-6 py-12"> <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> <!-- Brand --> <div> <div class="flex items-center gap-3 mb-4"> <div class="sg-logo" aria-label="SG"> <svg width="36" height="36" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"> <defs> <linearGradient id="logo-g-f" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#818cf8"></stop> <stop offset="50%" stop-color="#a78bfa"></stop> <stop offset="100%" stop-color="#06b6d4"></stop> </linearGradient> </defs> <rect class="sg-logo-bg" width="32" height="32" rx="8"></rect> <rect x="1.5" y="1.5" width="29" height="29" rx="6.5" fill="none" stroke="url(#logo-g-f)" stroke-width="1.2" opacity="0.6"></rect> <text x="4" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-f)" opacity="0.4">&lt;</text> <text x="22" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#logo-g-f)" opacity="0.4">/&gt;</text> <text x="16" y="22" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="14" font-weight="800" fill="url(#logo-g-f)" text-anchor="middle">SG</text> <circle cx="6" cy="5" r="1.2" fill="#06b6d4" opacity="0.7"></circle> <circle cx="26" cy="5" r="1" fill="#818cf8" opacity="0.6"></circle> <circle cx="26" cy="27" r="1.2" fill="#a78bfa" opacity="0.5"></circle> <circle cx="6" cy="27" r="1" fill="#06b6d4" opacity="0.4"></circle> </svg> </div> <span class="text-lg font-bold">Shivam Goyal</span> </div> <p class="text-sm text-[var(--text-muted)] leading-relaxed">
+Microsoft MVP (AI) | Senior Analyst @ EY<br>
+Building intelligent AI solutions and democratizing AI.
+</p> </div> <!-- Quick Links --> <div> <h4 class="font-semibold text-sm uppercase tracking-wider text-[var(--text-muted)] mb-4">Navigate</h4> <div class="grid grid-cols-2 gap-2"> <a href="/about" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">About</a> <a href="/projects" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">Projects</a> <a href="/articles" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">Articles</a> <a href="/mvp" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">MVP Work</a> <a href="/endorsements" class="text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors">Endorsements</a> </div> </div> <!-- Social --> <div> <h4 class="font-semibold text-sm uppercase tracking-wider text-[var(--text-muted)] mb-4">Connect</h4> <div class="flex gap-3"> <a href="https://linkedin.com/in/shivam2003" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--surface-light)] text-[var(--text-muted)] hover:text-[var(--color-primary-light)] hover:bg-[var(--color-primary)]/10 transition-all" aria-label="LinkedIn"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a><a href="https://github.com/ShivamGoyal03" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--surface-light)] text-[var(--text-muted)] hover:text-[var(--color-primary-light)] hover:bg-[var(--color-primary)]/10 transition-all" aria-label="GitHub"> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path> </svg> </a> </div> <div class="mt-4"> <p class="text-[11px] uppercase tracking-wider text-[var(--text-muted)]/80 mb-2">Tech Community Profiles</p> <div class="space-y-2"> <a href="https://techcommunity.microsoft.com/users/shivamgoyal03/2181140" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-md border border-[var(--border)] bg-[var(--surface-light)]/60 px-2.5 py-1.5 text-xs text-[var(--text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary-light)] transition-all"> <span class="inline-flex items-center gap-2"> <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"></path> </svg> Tech Community </span> <span class="rounded-full border border-[var(--border)] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-[var(--text-muted)]">  </span> </a><a href="https://techcommunity.microsoft.com/users/shivamgoyal/2694803" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between rounded-md border border-[var(--border)] bg-[var(--surface-light)]/60 px-2.5 py-1.5 text-xs text-[var(--text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary-light)] transition-all"> <span class="inline-flex items-center gap-2"> <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"></path> </svg> Tech Community (MVP) </span> <span class="rounded-full border border-[var(--border)] px-1.5 py-0.5 text-[10px] font-semibold leading-none text-[var(--text-muted)]"> Official Account </span> </a> </div> </div> <a href="mailto:shivamgoyal2003@gmail.com" class="inline-flex items-center gap-2 mt-4 text-sm text-[var(--text-muted)] hover:text-[var(--color-primary-light)] transition-colors"> <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path> </svg>
+shivamgoyal2003@gmail.com
+</a> </div> </div> <div class="mt-10 border-t border-[var(--border)] pt-5 text-center"> <p class="text-xs text-[var(--text-muted)]">
+© 2026 Copyright Shivam Goyal. All rights reserved.
+</p> </div> </div> </footer> </body></html> <script>
+  const projectContentRoot = document.querySelector('.article-content');
+  if (projectContentRoot) {
+    // ── Normalize remaining MkDocs icon syntax ─────────────────────────────
+    const walker = document.createTreeWalker(projectContentRoot, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) {
+      textNodes.push(walker.currentNode);
+    }
+
+    textNodes.forEach((node) => {
+      node.textContent = (node.textContent || '')
+        .replace(/:fontawesome-brands-microsoft:/g, '🪟')
+        .replace(/:fontawesome-solid-trophy:/g, '🏆')
+        .replace(/\{\s*\.lg\s*\.middle\s*\}/g, '')
+        .replace(/\s{2,}/g, ' ');
+    });
+
+    const headings = [...projectContentRoot.querySelectorAll('h2, h3')]
+      .filter((h) => (h.textContent || '').trim().length > 0);
+
+    if (headings.length) {
+      const ensureId = (el, fallback) => {
+      if (el.id) return el.id;
+      const base = (el.textContent || fallback || 'section')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+      el.id = `doc-${base || 'section'}`;
+      return el.id;
+      };
+
+      const controls = document.createElement('div');
+      controls.className = 'doc-controls';
+
+      const select = document.createElement('select');
+      select.className = 'doc-jump-select';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Jump to section...';
+      select.appendChild(placeholder);
+
+      headings.forEach((heading, idx) => {
+        const id = ensureId(heading, `section-${idx + 1}`);
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = `${heading.tagName === 'H3' ? '↳ ' : ''}${heading.textContent?.trim() || `Section ${idx + 1}`}`;
+        select.appendChild(option);
+      });
+
+      controls.append(select);
+      projectContentRoot.prepend(controls);
+
+      select.addEventListener('change', () => {
+        if (!select.value) return;
+        const target = document.getElementById(select.value);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      const detectCardType = (headingText) => {
+        const t = (headingText || '').toLowerCase();
+        if (t.includes('tech stack') || t.includes('technology stack') || t.includes('framework')) return 'tech';
+        if (t.includes('result') || t.includes('outcome') || t.includes('impact')) return 'result';
+        if (t.includes('key feature') || t === 'features' || t.includes('feature') || t.includes('capabilities')) return 'feature';
+        return null;
+      };
+
+      const iconForType = (type) => {
+        if (type === 'tech') return '🧰';
+        if (type === 'result') return '📈';
+        return '✨';
+      };
+
+      const findListForHeading = (heading) => {
+        let next = heading.nextElementSibling;
+        let hops = 0;
+        while (next && hops < 4) {
+          if (next.matches('ul, ol')) return next;
+          if (next.matches('h2, h3')) break;
+          next = next.nextElementSibling;
+          hops += 1;
+        }
+        return null;
+      };
+
+      const enhanceIconCards = () => {
+        const targetHeadings = [...projectContentRoot.querySelectorAll('h2, h3')];
+        targetHeadings.forEach((heading) => {
+          const type = detectCardType(heading.textContent || '');
+          if (!type) return;
+
+          const list = findListForHeading(heading);
+          if (!list || list.dataset.iconCardsEnhanced === 'true') return;
+
+          const items = [...list.querySelectorAll(':scope > li')];
+          if (!items.length) return;
+
+          const grid = document.createElement('div');
+          grid.className = 'icon-card-grid';
+
+          items.forEach((li) => {
+            const card = document.createElement('article');
+            card.className = 'icon-card';
+
+            const icon = document.createElement('span');
+            icon.className = 'icon-card-icon';
+            icon.textContent = iconForType(type);
+
+            const body = document.createElement('div');
+            body.className = 'icon-card-body';
+            body.innerHTML = li.innerHTML;
+
+            card.append(icon, body);
+            grid.appendChild(card);
+          });
+
+          list.dataset.iconCardsEnhanced = 'true';
+          list.replaceWith(grid);
+        });
+      };
+
+      enhanceIconCards();
+
+    }
+  }
+</script>
