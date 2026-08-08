@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="0.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="32" height="32" rx="8" fill="#0f0f23"/>
+  <!-- Subtle inner glow ring -->
+  <rect x="1.5" y="1.5" width="29" height="29" rx="6.5" fill="none" stroke="url(#g)" stroke-width="1.2" opacity="0.6"/>
+  <!-- Angle brackets < /> for dev feel -->
+  <text x="4" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#g)" filter="url(#glow)" opacity="0.5">&lt;</text>
+  <text x="22" y="21" font-family="'Fira Code','SF Mono',monospace" font-size="11" font-weight="600" fill="url(#g)" filter="url(#glow)" opacity="0.5">/&gt;</text>
+  <!-- Main initials -->
+  <text x="16" y="22" font-family="Inter,'Segoe UI',system-ui,sans-serif" font-size="14" font-weight="800" fill="url(#g)" text-anchor="middle" filter="url(#glow)">SG</text>
+  <!-- Decorative dots (AI/data nodes) -->
+  <circle cx="6" cy="5" r="1.2" fill="#06b6d4" opacity="0.7"/>
+  <circle cx="26" cy="5" r="1" fill="#818cf8" opacity="0.6"/>
+  <circle cx="26" cy="27" r="1.2" fill="#a78bfa" opacity="0.5"/>
+  <circle cx="6" cy="27" r="1" fill="#06b6d4" opacity="0.4"/>
+</svg>
