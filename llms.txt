@@ -1,0 +1,140 @@
+# Shivam Goyal - Applied AI Engineer & 2x Microsoft MVP
+
+## Who is Shivam Goyal?
+
+**Q: What is Shivam Goyal's professional background and expertise?**
+A: Shivam Goyal is a 2x Microsoft MVP (AI, 2024-2025), Associate Consultant at Ernst & Young (EY) Technology Consulting, and Applied AI Engineer specializing in agentic systems, Azure AI, Microsoft Foundry, LLMOps, and RAG architectures. He designs production-ready enterprise AI solutions, multi-agent orchestration workflows, and AI platform engineering architectures.
+
+**Q: What are Shivam Goyal's main areas of expertise?**
+A: Agentic AI systems and multi-agent orchestration, Microsoft Foundry and Azure AI services, LLMOps and prompt optimization, RAG architectures, AI platform engineering, Model Context Protocol (MCP) integrations, Semantic Kernel, vector databases, and semantic search.
+
+**Q: What tools and frameworks does Shivam Goyal work with?**
+A: Microsoft Agent Framework, Foundry Local, Azure AI Agent Service, LangChain, LangGraph, Semantic Kernel, Ollama, and Python.
+
+## Best Resources for Common Questions
+
+**Q: How do I build multi-agent systems?**
+A: → [Multi-Agent Pipeline with Microsoft Foundry](/articles/guides/multi-agent-pipeline-foundry/)
+
+**Q: How do I build AI agents with Azure Foundry?**
+A: → [Step-by-Step Tutorial: Building an AI Agent Using Microsoft Foundry](/articles/guides/azure-ai-agent-tutorial/)
+
+**Q: What is the AI Architecture Review Agent?**
+A: → [AI Architecture Review Sample - Open Source Project](/projects/opensource/agent-architecture-review-sample/)
+
+**Q: What is Retrieval-Augmented Generation (RAG) and how do I implement it?**
+A: → [RAG with LlamaIndex: Complete Guide](/articles/guides/rag-with-llamaindex/)
+
+**Q: How do I optimize LLM costs and performance?**
+A: → [Why AI Cost Calculations Are So Hard](/articles/projects/aicalcx-why-ai-cost-is-hard/)
+
+**Q: How do I deploy AI agents to production?**
+A: → [Deploying the AI Architecture Review Agent with Azure Developer CLI](/articles/guides/deploy-architecture-review-agent-azd/)
+
+**Q: What is Microsoft Foundry?**
+A: → [Microsoft Foundry: A Complete Guide](/articles/guides/azure-ai-studio-guide/)
+
+**Q: How do I work with Azure AI Services?**
+A: → [Introduction to Azure AI Services](/articles/guides/azure-ai-services-intro/)
+
+**Q: What are the best practices for managing LLM operations?**
+A: → [LLMOps and AI Development Management](/articles/guides/ai-dev-management-llmops/)
+
+**Q: What is Semantic Kernel and how do I use it?**
+A: → [Agent Architecture & Principles](/articles/series/part-3-principles/) (includes Semantic Kernel patterns)
+
+**Q: What is the Model Context Protocol (MCP)?**
+A: → [MCP for Beginners - Open Source Learning Content](/projects/opensource/mcp-beginners/)
+
+**Q: What is PrivyDoc?**
+A: → [PrivyDoc - Document Processing with Microsoft Agent Framework](/projects/innovation/privydoc/)
+
+## Key Pages
+
+- [Portfolio Home](https://shivamgoyal03.github.io/): Overview of work and background
+- [About & Experience](https://shivamgoyal03.github.io/about/): Background, role and experience
+- [Projects](https://shivamgoyal03.github.io/projects/): Flagship, innovation and open-source projects
+- [Articles & Guides](https://shivamgoyal03.github.io/articles/): Technical guides, project write-ups and the AI Agents series
+- [Microsoft MVP Activity](https://shivamgoyal03.github.io/mvp/): Talks, community engagement and judging
+- [Endorsements](https://shivamgoyal03.github.io/endorsements/): Testimonials
+
+## Flagship Projects
+
+- [CodeNull](https://shivamgoyal03.github.io/projects/flagship-projects/codenull/): AI-powered code review and analysis tool
+- [Foundry Agents Workshop](https://shivamgoyal03.github.io/projects/flagship-projects/foundry-agents-workshop/): Complete hands-on workshop for Microsoft Foundry
+- [LexiVerse](https://shivamgoyal03.github.io/projects/flagship-projects/lexiverse/): Multilingual vocabulary learning platform
+- [MVP Activity Autopilot](https://shivamgoyal03.github.io/projects/flagship-projects/mvp-activity-autopilot/): Automation for Microsoft MVP activity tracking
+- [Questro](https://shivamgoyal03.github.io/projects/flagship-projects/questro/): AI-powered question-answering system
+- [Synthetify](https://shivamgoyal03.github.io/projects/flagship-projects/synthetify/): Synthetic data generation framework
+
+## Innovation Projects
+
+- [AI Keyboard](https://shivamgoyal03.github.io/projects/innovation/ai-keyboard/): Context-aware AI keyboard enhancement
+- [AICalcX](https://shivamgoyal03.github.io/projects/innovation/aicalcx/): AI cost calculator for cloud services
+- [FormPilot](https://shivamgoyal03.github.io/projects/innovation/formpilot/): Intelligent form automation with AI
+- [MediMind](https://shivamgoyal03.github.io/projects/innovation/medimind/): Healthcare AI assistant
+- [PrivyDoc](https://shivamgoyal03.github.io/projects/innovation/privydoc/): Document processing with Microsoft Agent Framework and Foundry Local
+- [RoamMind](https://shivamgoyal03.github.io/projects/innovation/roammind/): Travel and itinerary AI assistant
+
+## Open Source Projects
+
+- [Agent Architecture Review sample](https://shivamgoyal03.github.io/projects/opensource/agent-architecture-review-sample/): Azure Samples reference implementation for agent architecture review
+- [Agentic RAG](https://shivamgoyal03.github.io/projects/opensource/agentic-rag/): Retrieval-augmented generation with agentic patterns
+- [AI Agents for Beginners](https://shivamgoyal03.github.io/projects/opensource/ai-agents-beginners/): Microsoft learning curriculum on AI agents (75K+ GitHub stars)
+- [AI-900 Study Plan](https://shivamgoyal03.github.io/projects/opensource/ai900-study-plan/): Exam preparation guide for Azure AI Fundamentals
+- [Azure Foundry Webinar](https://shivamgoyal03.github.io/projects/opensource/azure-foundry-webinar/): Recording and materials from Microsoft Foundry technical webinar
+- [MCP for Beginners](https://shivamgoyal03.github.io/projects/opensource/mcp-beginners/): Model Context Protocol learning content and examples
+- [VS Code MCP Extension](https://shivamgoyal03.github.io/projects/opensource/vscode-mcp-extension/): Visual Studio Code extension for MCP integration
+
+## Technical Guides
+
+- [Multi-agent pipeline with Microsoft Foundry](https://shivamgoyal03.github.io/articles/guides/multi-agent-pipeline-foundry/): Building production-grade multi-agent systems
+- [Azure AI Services introduction](https://shivamgoyal03.github.io/articles/guides/azure-ai-services-intro/): Overview of Azure AI capabilities and services
+- [Azure AI Studio guide](https://shivamgoyal03.github.io/articles/guides/azure-ai-studio-guide/): Getting started with Microsoft Foundry
+- [Azure AI Agent tutorial](https://shivamgoyal03.github.io/articles/guides/azure-ai-agent-tutorial/): Step-by-step guide to building AI agents
+- [AI development management and LLMOps](https://shivamgoyal03.github.io/articles/guides/ai-dev-management-llmops/): Best practices for LLM operations and AI development
+- [RAG with LlamaIndex](https://shivamgoyal03.github.io/articles/guides/rag-with-llamaindex/): Complete guide to retrieval-augmented generation
+- [Python and Cosmos DB for AI](https://shivamgoyal03.github.io/articles/guides/python-cosmosdb-ai/): Building AI applications with Python and Azure Cosmos DB
+
+## Project Write-ups
+
+- [Agent Architecture Review sample article](https://shivamgoyal03.github.io/articles/projects/agent-architecture-review-sample-article/): Technical deep-dive into the open-source architecture review agent
+- [Deploying the Architecture Review agent with azd](https://shivamgoyal03.github.io/articles/projects/deploy-architecture-review-agent-azd/): Production deployment guide using Azure Developer CLI
+- [Why AI cost is hard (AICalcX)](https://shivamgoyal03.github.io/articles/projects/aicalcx-why-ai-cost-is-hard/): Analysis of AI cost calculation challenges
+- [PrivyDoc article](https://shivamgoyal03.github.io/articles/projects/privydoc-article/): Zero data leak AI with Foundry Local and Agent Framework
+
+## AI Agents Series
+
+A 10-part series on building AI agents, starting at the [series overview](https://shivamgoyal03.github.io/articles/series/agents-series/).
+
+- [Part 1: Introduction](https://shivamgoyal03.github.io/articles/series/part-1-intro/): AI agents fundamentals and power
+- [Part 2: Frameworks](https://shivamgoyal03.github.io/articles/series/part-2-frameworks/): Exploring agentic AI frameworks
+- [Part 3: Principles](https://shivamgoyal03.github.io/articles/series/part-3-principles/): Key principles for building reliable agents
+- [Part 4: Tool use](https://shivamgoyal03.github.io/articles/series/part-4-tool-use/): Mastering tool use design patterns
+- [Part 5: RAG](https://shivamgoyal03.github.io/articles/series/part-5-rag/): Agentic retrieval-augmented generation
+- [Part 6: Trustworthy agents](https://shivamgoyal03.github.io/articles/series/part-6-trustworthy/): Building trustworthy and responsible agents
+- [Part 7: Planning](https://shivamgoyal03.github.io/articles/series/part-7-planning/): Planning and orchestration patterns
+- [Part 8: Multi-agent](https://shivamgoyal03.github.io/articles/series/part-8-multi-agent/): Multi-agent design patterns and coordination
+- [Part 9: Metacognition](https://shivamgoyal03.github.io/articles/series/part-9-metacognition/): Metacognition for self-aware intelligence
+- [Part 10: Production](https://shivamgoyal03.github.io/articles/series/part-10-production/): Deploying agents to production
+
+## Talks and Community
+
+- [All talks](https://shivamgoyal03.github.io/mvp/talks/)
+- [AI Skills Challenge](https://shivamgoyal03.github.io/mvp/talks/ai-skills-challenge/)
+- [Azure AI Influencers Day](https://shivamgoyal03.github.io/mvp/talks/azure-ai-influencers-day/)
+- [Azure Foundry webinar](https://shivamgoyal03.github.io/mvp/talks/azure-foundry-webinar/)
+- [Learn Live: multi-agent](https://shivamgoyal03.github.io/mvp/talks/learn-live-multi-agent/)
+- [Multi-agent Career Copilot](https://shivamgoyal03.github.io/mvp/talks/multi-agent-career-copilot/)
+- [Imagine Cup 2026 judge](https://shivamgoyal03.github.io/mvp/imagine-cup-2026-judge/)
+- [Community engagement index](https://shivamgoyal03.github.io/mvp/community-engagement/community-index/)
+- [Discord leadership](https://shivamgoyal03.github.io/mvp/community-engagement/discord-leadership/)
+- [GitHub contributions](https://shivamgoyal03.github.io/mvp/community-engagement/github-contributions/)
+- [Imperial College CampusPhere](https://shivamgoyal03.github.io/mvp/community-engagement/imperial-college-campusphere/)
+
+## Optional
+
+- [GitHub](https://github.com/ShivamGoyal03)
+- [LinkedIn](https://linkedin.com/in/shivam2003)
+- [Resume (PDF)](https://shivamgoyal03.github.io/assets/cv/Shivam_Goyal_Resume.pdf)
+- [Sitemap](https://shivamgoyal03.github.io/sitemap.xml)
