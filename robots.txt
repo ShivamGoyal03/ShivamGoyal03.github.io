@@ -1,0 +1,6 @@
+# Search engine directives
+User-agent: *
+Allow: /
+
+# Sitemap location for crawlers
+Sitemap: https://shivamgoyal03.github.io/sitemap.xml
